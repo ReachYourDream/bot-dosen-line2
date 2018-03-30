@@ -37,12 +37,12 @@ function handleEvent(event) {
 
   if(event.message.text.substring(0,4)==dosen){
      const namaDosen = event.message.substring(5);
-     const dosen = {type:'text',text: namaDosen};
-     return client.replyMessage(event.replyToken,dosen);
+     const dosen = {type:'text',text: 'bisa dosen'};
+     return client.replyMessage(event.replyToken, dosen);
    }
   else{
-   const dosen= {type:'text',text: 'error'};
-   return client.replyMessage(event.replyToken,dosen);
+   const dosen= {type:'text',text: 'nggak bisa dosen'};
+   return client.replyMessage(event.replyToken, dosen);
  }
  // return client.replyMessage(event.replyToken,dosen);
 
