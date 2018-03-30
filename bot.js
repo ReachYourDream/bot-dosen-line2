@@ -38,11 +38,11 @@ function handleEvent(event) {
   if(event.message.text.substring(0,4)==dosen){
      const namaDosen = event.message.substring(5);
      const dosen = {type:'text',text: 'bisa dosen'};
-     return client.replyMessage(event.replyToken, dosen);
+     const echo = { type: 'text', text: 'salahnya dimana1?' };
    }
   else{
    const dosen= {type:'text',text: 'nggak bisa dosen'};
-   return client.replyMessage(event.replyToken, dosen);
+   const echo = { type: 'text', text: 'salahnya dimana2?' };
  }
  // return client.replyMessage(event.replyToken,dosen);
 
