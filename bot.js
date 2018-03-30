@@ -35,6 +35,12 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
+  const b = String(event.message.text);
+  if(b=="cek"){
+    const echo = { type: 'text', text: 'cek?' };
+    return client.replyMessage(event.replyToken, echo);
+  }
+
  //  if(event.message.text.substring(0,4)==dosen){
  //     const namaDosen = event.message.substring(5);
  //     const dosen = {type:'text',text: 'bisa dosen'};
