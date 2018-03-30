@@ -15,7 +15,7 @@ const client = new line.Client(config);
 
 const app = express();
 
-app.post('/callback'.,line.middleware(config),(req,res)=>{
+app.post('/callback',line.middleware(config),(req,res)=>{
 	Promise
 	.all(req.body.events.map(handleEvent))
 	.then((result)=>res.json(result))
@@ -27,19 +27,19 @@ app.post('/callback'.,line.middleware(config),(req,res)=>{
 });
 
 function handleEvent(evt){
-	if(event.type!=='message'|| event.type!=='text'){
+	if(event.type!=='message'|| event.message.type!=='text'){
 		return Promise.resolve(null);
 	}
 	
 	// var baru = new Date();
 	// var tanggal = baru.getDate();
 	// var bulan = baru.getMonth();
-	if(event.type=='message'){
-		if(event.message.substring(0,4)==dosen){
+	// if(event.type=='message'){
+		if(event.message.text.substring(0,4)==dosen){
 			const namaDosen = event.message.substring(5);
 			const dosen = {type:'text',text: namaDosen};
 		}
-	} else{
+	 else{
 		const dosen= {type:'text',text: 'error'};
 	}
 	return client.replyMessage(event.replyToken,dosen);
