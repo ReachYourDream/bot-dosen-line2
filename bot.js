@@ -35,6 +35,17 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
+  if(event.message.text.substring(0,4)==dosen){
+     const namaDosen = event.message.substring(5);
+     const dosen = {type:'text',text: namaDosen};
+     return client.replyMessage(event.replyToken,dosen);
+   }
+  else{
+   const dosen= {type:'text',text: 'error'};
+   return client.replyMessage(event.replyToken,dosen);
+ }
+ // return client.replyMessage(event.replyToken,dosen);
+
   // create a echoing text message
   const echo = { type: 'text', text: 'salahnya dimana?' };
 
