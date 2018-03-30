@@ -36,7 +36,7 @@ function handleEvent(event) {
   }
 
   const b = String(event.message.text);
-  if(b.substring(0,4)=='dosen'){
+  if(b.substring(0,5)=='dosen'){
     const echo = { type: 'text', text: b };
     return client.replyMessage(event.replyToken, echo);
   }
