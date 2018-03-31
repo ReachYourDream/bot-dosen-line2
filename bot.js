@@ -70,8 +70,7 @@ function handleEvent(event) {
         }
       });
 
-    const echo = { type: 'text', text: b };
-    return client.replyMessage(event.replyToken, echo);
+    
   }
 
  //  if(event.message.text.substring(0,4)==dosen){
@@ -86,6 +85,8 @@ function handleEvent(event) {
  // return client.replyMessage(event.replyToken,dosen);
 
   // create a echoing text message
+  const echo = { type: 'text', text: b };
+    return client.replyMessage(event.replyToken, echo);
   const echo = { type: 'text', text: 'salahnya dimana?' };
 
   // use reply API
