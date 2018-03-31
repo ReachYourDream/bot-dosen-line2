@@ -3,6 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
+const request = require('request');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 
 // create LINE SDK config from env variables
@@ -21,6 +22,7 @@ const app = express();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
+
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
@@ -42,7 +44,7 @@ function handleEvent(event) {
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     const echo = { type:'text', text: urlDosen };
-    return client.replyMessage(event.replyToken, echo);
+    // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
@@ -67,34 +69,21 @@ function handleEvent(event) {
             }
           );
         } else{
-          const hasil={type:'text',text:'Mohon mengulang kembali'};
-          return client.replyMessage(event.replyToken, hasil);
-          // message.channel.send("Mohon mengulang kembali");       
         }
       });
 
+          const hasil={type:'text',text:'Mohon mengulang kembali'};
+          return client.replyMessage(event.replyToken, hasil);
+          // message.channel.send("Mohon mengulang kembali");       
     
-  }
+  } else{
   // create a echoing text message
-  // const echo = { type: 'text', text: b };
-  //   return client.replyMessage(event.replyToken, b);
   const echo = { type: 'text', text: 'salahnya dimana?' };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
+  }
 }
-
- //  if(event.message.text.substring(0,4)==dosen){
- //     const namaDosen = event.message.substring(5);
- //     const dosen = {type:'text',text: 'bisa dosen'};
- //     const echo = { type: 'text', text: 'salahnya dimana1?' };
- //   }
- //  else{
- //   const dosen= {type:'text',text: 'nggak bisa dosen'};
- //   const echo = { type: 'text', text: 'salahnya dimana2?' };
- // }
- // return client.replyMessage(event.replyToken,dosen);
-
 
 // listen on port
 const port = process.env.PORT || 3000;
