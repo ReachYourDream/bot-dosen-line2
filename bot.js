@@ -3,7 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
-const url = "https://radityo.000webhostapp.com/index.php?nama=";
+const url = 'https://radityo.000webhostapp.com/index.php?nama=';
 
 // create LINE SDK config from env variables
 const config = {
@@ -41,8 +41,8 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    const baru = {type:'text',text:namaDosen};
-    return client.replyMessage(event.replyToken, baru);
+    const echo = { type:'text', text: namaDosen };
+    return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
