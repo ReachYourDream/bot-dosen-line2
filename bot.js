@@ -45,17 +45,17 @@ function handleEvent(event) {
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
-        const echo = {type: 'text', text: res.headers['content-type']};
-        return client.replyMessage(event.replyToken, echo);
+        // const echo = {type: 'text', text: res.headers['content-type']};
+        // return client.replyMessage(event.replyToken, echo);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
-          res.setEncoding("utf8");
-          let body = "";
-          res.on("data", data=>{
+          res.setEncoding('utf8');
+          let body = '';
+          res.on('data', data=>{
             body += data;
           }); 
-          res.on("end", ()=>{
+          res.on('end', ()=>{
             body = JSON.parse(body);
-            if(body['hasil']=="sukses"){
+            if(body['hasil']=='sukses'){
               const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
               return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
