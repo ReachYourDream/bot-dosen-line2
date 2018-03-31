@@ -3,7 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
-const url = 'https://radityo.000webhostapp.com/index.php?nama=';
+const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 
 // create LINE SDK config from env variables
 const config = {
