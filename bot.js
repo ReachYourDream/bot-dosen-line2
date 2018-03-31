@@ -74,8 +74,8 @@ function handleEvent(event) {
     
   }
   // create a echoing text message
-  const echo = { type: 'text', text: b };
-    return client.replyMessage(event.replyToken, b);
+  // const echo = { type: 'text', text: b };
+  //   return client.replyMessage(event.replyToken, b);
   const echo = { type: 'text', text: 'salahnya dimana?' };
 
   // use reply API
