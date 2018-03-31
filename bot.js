@@ -73,6 +73,14 @@ function handleEvent(event) {
 
     
   }
+  // create a echoing text message
+  const echo = { type: 'text', text: b };
+    return client.replyMessage(event.replyToken, b);
+  const echo = { type: 'text', text: 'salahnya dimana?' };
+
+  // use reply API
+  return client.replyMessage(event.replyToken, echo);
+}
 
  //  if(event.message.text.substring(0,4)==dosen){
  //     const namaDosen = event.message.substring(5);
@@ -85,14 +93,6 @@ function handleEvent(event) {
  // }
  // return client.replyMessage(event.replyToken,dosen);
 
-  // create a echoing text message
-  const echo = { type: 'text', text: b };
-    return client.replyMessage(event.replyToken, echo);
-  const echo = { type: 'text', text: 'salahnya dimana?' };
-
-  // use reply API
-  return client.replyMessage(event.replyToken, echo);
-}
 
 // listen on port
 const port = process.env.PORT || 3000;
