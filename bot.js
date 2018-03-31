@@ -44,7 +44,7 @@ function handleEvent(event) {
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     const echo = { type:'text', text: urlDosen };
-    // return client.replyMessage(event.replyToken, echo);
+    return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
