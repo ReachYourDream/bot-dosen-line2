@@ -3,7 +3,6 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
-const request = require('request');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 
 // create LINE SDK config from env variables
@@ -22,7 +21,6 @@ const app = express();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
-
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
@@ -76,14 +74,27 @@ function handleEvent(event) {
       });
 
     
-  } else{
+  }
   // create a echoing text message
+  // const echo = { type: 'text', text: b };
+  //   return client.replyMessage(event.replyToken, b);
   const echo = { type: 'text', text: 'salahnya dimana?' };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
-  }
 }
+
+ //  if(event.message.text.substring(0,4)==dosen){
+ //     const namaDosen = event.message.substring(5);
+ //     const dosen = {type:'text',text: 'bisa dosen'};
+ //     const echo = { type: 'text', text: 'salahnya dimana1?' };
+ //   }
+ //  else{
+ //   const dosen= {type:'text',text: 'nggak bisa dosen'};
+ //   const echo = { type: 'text', text: 'salahnya dimana2?' };
+ // }
+ // return client.replyMessage(event.replyToken,dosen);
+
 
 // listen on port
 const port = process.env.PORT || 3000;
@@ -163,59 +174,59 @@ app.listen(port, () => {
 
 // //Inisialiasi Bot Line
 // const config = {
-// 	channelAccessToken : process.env.BOT_TOKEN;
-// 	channelSecret : process.env.BOT_SECRET;
+//  channelAccessToken : process.env.BOT_TOKEN;
+//  channelSecret : process.env.BOT_SECRET;
 // }
 // const client = new line.Client(config);
 
 // const app = express();
 
 // app.post('/callback',line.middleware(config),(req,res)=>{
-// 	Promise
-// 	.all(req.body.events.map(handleEvent))
-// 	.then((result)=>res.json(result))
-// 	.catch((err)=>{
-// 		console.error(err);
-// 		res.status(500).end();
-// 	});
+//  Promise
+//  .all(req.body.events.map(handleEvent))
+//  .then((result)=>res.json(result))
+//  .catch((err)=>{
+//    console.error(err);
+//    res.status(500).end();
+//  });
 
 // });
 
 // function handleEvent(evt){
-// 	if(event.type!=='message'|| event.message.type!=='text'){
-// 		return Promise.resolve(null);
-// 	}
-	
-// 	// var baru = new Date();
-// 	// var tanggal = baru.getDate();
-// 	// var bulan = baru.getMonth();
-// 	// if(event.type=='message'){
-// 		if(event.message.text.substring(0,4)==dosen){
-// 			const namaDosen = event.message.substring(5);
-// 			const dosen = {type:'text',text: namaDosen};
-// 		}
-// 	 else{
-// 		const dosen= {type:'text',text: 'error'};
-// 	}
-// 	return client.replyMessage(event.replyToken,dosen);
+//  if(event.type!=='message'|| event.message.type!=='text'){
+//    return Promise.resolve(null);
+//  }
+  
+//  // var baru = new Date();
+//  // var tanggal = baru.getDate();
+//  // var bulan = baru.getMonth();
+//  // if(event.type=='message'){
+//    if(event.message.text.substring(0,4)==dosen){
+//      const namaDosen = event.message.substring(5);
+//      const dosen = {type:'text',text: namaDosen};
+//    }
+//   else{
+//    const dosen= {type:'text',text: 'error'};
+//  }
+//  return client.replyMessage(event.replyToken,dosen);
 // }
 
 
 // const port= process.env.PORT || 3000;
 // app.listen(port,()=>{
-// 	console.log(`listening on ${port}`);
+//  console.log(`listening on ${port}`);
 // });
 // // // var req = http.request(options,function(res){
-// // // 	var msg = '';
+// // //  var msg = '';
 
-// // // 	res.setEncoding('utf8');
-// // // 	res.on('data',)
+// // //  res.setEncoding('utf8');
+// // //  res.on('data',)
 // // // });
 // // bot.on('ready',function(){
-// // 	console.log("Ready");
-// // // 	logger.info('Connected');
-// // // 	logger.info('Logged in as: ');
-// // // 	logger.info(bot.username + ' - (' + bot.id + ')');	
+// //   console.log("Ready");
+// // //  logger.info('Connected');
+// // //  logger.info('Logged in as: ');
+// // //  logger.info(bot.username + ' - (' + bot.id + ')');  
 // // });
 // // bot.on('message',function(message){
-// // 	//Bot harus tau kapan mengeksekusi command
+// //   //Bot harus tau kapan mengeksekusi command
