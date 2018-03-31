@@ -2,6 +2,8 @@
 
 const line = require('@line/bot-sdk');
 const express = require('express');
+const https = require('https');
+const url = "https://radityo.000webhostapp.com/index.php?nama=";
 
 // create LINE SDK config from env variables
 const config = {
@@ -37,6 +39,36 @@ function handleEvent(event) {
 
   const b = String(event.message.text);
   if(b.substring(0,5)=='dosen'){
+    const namaDosen = b.substring(6);
+    const urlDosen = url+namaDosen;
+    https.get(urlDosen,res => {
+        console.log(res.headers['content-type']);
+        if(res.headers['content-type']=='application/json; charset=UTF-8'){
+          res.setEncoding("utf8");
+          let body = "";
+          res.on("data", data=>{
+            body += data;
+          }); 
+          res.on("end", ()=>{
+            body = JSON.parse(body);
+            if(body['hasil']=="sukses"){
+              const hasil = {type:'text',text: "Nama Dosen: " + body['nama'] + "  Status: " + body['status']};
+              return client.replyMessage(event.replyToken, hasil);}
+              // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
+            else{
+              // message.channel.send(body['status']);
+              const hasil={type:'text',text:body['status']};
+              return client.replyMessage(event.replyToken, hasil);
+              }
+            }
+          );
+        } else{
+          const hasil={type:'text',text:'Mohon mengulang kembali'};
+          return client.replyMessage(event.replyToken, hasil);
+          // message.channel.send("Mohon mengulang kembali");       
+        }
+      });
+
     const echo = { type: 'text', text: b };
     return client.replyMessage(event.replyToken, echo);
   }
