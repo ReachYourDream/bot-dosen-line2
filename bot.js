@@ -45,6 +45,8 @@ function handleEvent(event) {
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
+        const echo = {type: 'text', text: res.headers['content-type']};
+        return client.replyMessage(event.replyToken, echo);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
           res.setEncoding("utf8");
           let body = "";
