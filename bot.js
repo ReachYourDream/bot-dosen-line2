@@ -41,8 +41,8 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    const echo = { type:'text', text: urlDosen };
-    return client.replyMessage(event.replyToken, echo);
+    // const echo = { type:'text', text: urlDosen };
+    // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
@@ -54,13 +54,13 @@ function handleEvent(event) {
           res.on("end", ()=>{
             body = JSON.parse(body);
             if(body['hasil']=="sukses"){
-              const hasil = {type:'text',text: "Nama Dosen: " + body['nama'] + "  Status: " + body['status']};
-              return client.replyMessage(event.replyToken, hasil);}
+              const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
+              return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              const hasil={type:'text',text:body['status']};
-              return client.replyMessage(event.replyToken, hasil);
+              const echo ={type:'text',text:body['status']};
+              return client.replyMessage(event.replyToken, echo);
               }
             }
           );
