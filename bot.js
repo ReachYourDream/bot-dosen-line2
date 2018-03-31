@@ -69,12 +69,12 @@ function handleEvent(event) {
             }
           );
         } else{
-        }
-      });
-
           const hasil={type:'text',text:'Mohon mengulang kembali'};
           return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
+        }
+      });
+
     
   } else{
   // create a echoing text message
