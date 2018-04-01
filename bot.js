@@ -4,6 +4,7 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
+const echo = { type: 'text', text: 'salahnya dimana?' };
 
 // create LINE SDK config from env variables
 const config = {
@@ -41,7 +42,7 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    const echo = { type:'text', text: urlDosen };
+    echo = { type:'text', text: urlDosen };
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
@@ -56,18 +57,18 @@ function handleEvent(event) {
           res.on('end', ()=>{
             body = JSON.parse(body);
             if(body['hasil']=='sukses'){
-              const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
+              echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              const echo ={type:'text',text:body['status']};
+              echo ={type:'text',text:body['status']};
               // return client.replyMessage(event.replyToken, echo);
               }
             }
           );
         } else{
-          const hasil={type:'text',text:'Mohon mengulang kembali'};
+          echo={type:'text',text:'Mohon mengulang kembali'};
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
@@ -78,7 +79,7 @@ function handleEvent(event) {
   // create a echoing text message
   // const echo = { type: 'text', text: b };
   //   return client.replyMessage(event.replyToken, b);
-  const echo = { type: 'text', text: 'salahnya dimana?' };
+  
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
