@@ -56,18 +56,18 @@ function handleEvent(event) {
           res.on('end', ()=>{
             body = JSON.parse(body);
             if(body['hasil']=='sukses'){
-              const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
+              echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              const echo ={type:'text',text:body['status']};
+              echo ={type:'text',text:body['status']};
               // return client.replyMessage(event.replyToken, echo);
               }
             }
           );
         } else{
-          const hasil={type:'text',text:'Mohon mengulang kembali'};
+          echo = {type:'text',text:'Mohon mengulang kembali'};
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
