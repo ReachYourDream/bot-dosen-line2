@@ -44,9 +44,9 @@ function handleEvent(event) {
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
     // return client.replyMessage(event.replyToken, echo);
-    try{https.get(urlDosen,res => {
+    https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
-        echo = {type: 'text', text: res.headers['content-type'] + 'a'};
+        // const echo = {type: 'text', text: res.headers['content-type']};
         // return client.replyMessage(event.replyToken, echo);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
           res.setEncoding('utf8');
@@ -62,7 +62,7 @@ function handleEvent(event) {
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              echo ={type:'text',text:body['status'] + 'b'};
+              echo ={type:'text',text:body['status']};
               // return client.replyMessage(event.replyToken, echo);
               }
             }
@@ -72,12 +72,7 @@ function handleEvent(event) {
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
-      });}
-    catch(e){
-      const a  = String(e);
-      echo = {type:'text',text:a};
-      return client.replyMessage(event.replyToken, echo);
-    }
+      });
 
   return client.replyMessage(event.replyToken, echo);
   }
