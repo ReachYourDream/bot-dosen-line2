@@ -4,7 +4,7 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
-
+const echo = { type: 'text', text: 'salahnya dimana?' };
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -41,7 +41,7 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    const echo = { type:'text', text: urlDosen };
+    echo = { type:'text', text: urlDosen };
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
@@ -78,7 +78,7 @@ function handleEvent(event) {
   // create a echoing text message
   // const echo = { type: 'text', text: b };
   //   return client.replyMessage(event.replyToken, b);
-  const echo = { type: 'text', text: 'salahnya dimana?' };
+  
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
