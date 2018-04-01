@@ -62,7 +62,7 @@ function handleEvent(event) {
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              echo ={type:'text',text:body['status']};
+              echo ={type:'text',text:body['status']}+'a';
               // return client.replyMessage(event.replyToken, echo);
               }
             }
@@ -74,7 +74,7 @@ function handleEvent(event) {
         }
       });
 
-    return client.replyMessage(event.replyToken, echo);
+    // return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
