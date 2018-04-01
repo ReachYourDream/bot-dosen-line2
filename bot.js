@@ -46,7 +46,7 @@ function handleEvent(event) {
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
-        echo = {type: 'text', text: res.headers['content-type']};
+        echo = {type: 'text', text: res.headers['content-type'] + 'a'};
         // return client.replyMessage(event.replyToken, echo);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
           res.setEncoding('utf8');
@@ -62,7 +62,7 @@ function handleEvent(event) {
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              echo ={type:'text',text:body['status']};
+              echo ={type:'text',text:body['status'] + 'b'};
               // return client.replyMessage(event.replyToken, echo);
               }
             }
