@@ -42,7 +42,7 @@ function handleEvent(event) {
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     const echo = { type:'text', text: urlDosen };
-    return client.replyMessage(event.replyToken, echo);
+    // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
@@ -57,23 +57,23 @@ function handleEvent(event) {
             body = JSON.parse(body);
             if(body['hasil']=='sukses'){
               const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
-              return client.replyMessage(event.replyToken, echo);}
+              // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
               const echo ={type:'text',text:body['status']};
-              return client.replyMessage(event.replyToken, echo);
+              // return client.replyMessage(event.replyToken, echo);
               }
             }
           );
         } else{
           const hasil={type:'text',text:'Mohon mengulang kembali'};
-          return client.replyMessage(event.replyToken, hasil);
+          // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
 
-    
+    return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
