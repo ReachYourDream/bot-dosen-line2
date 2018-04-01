@@ -56,7 +56,7 @@ function handleEvent(event) {
           res.on('end', ()=>{
             body = JSON.parse(body);
             if(body['hasil']=='sukses'){
-              const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
+              const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
