@@ -76,7 +76,7 @@ function handleEvent(event) {
     catch(e){
       echo = { type: 'text', text: 'salahnya diTry' };
     }
-
+    echo = { type: 'text', text: 'bukan di catch-nya' };
     // return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
