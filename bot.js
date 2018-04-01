@@ -4,7 +4,6 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
-const echo = { type: 'text', text: 'salahnya dimana?' };
 
 // create LINE SDK config from env variables
 const config = {
@@ -42,9 +41,9 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    this.echo = { type:'text', text: urlDosen };
-    return client.replyMessage(event.replyToken, this.echo);
-    try{https.get(urlDosen,res => {
+    const echo = { type:'text', text: urlDosen };
+    // return client.replyMessage(event.replyToken, echo);
+    https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
         // return client.replyMessage(event.replyToken, echo);
@@ -57,32 +56,29 @@ function handleEvent(event) {
           res.on('end', ()=>{
             body = JSON.parse(body);
             if(body['hasil']=='sukses'){
-              echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
+              const echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              echo ={type:'text',text:body['status']}+'a';
+              const echo ={type:'text',text:body['status']};
               // return client.replyMessage(event.replyToken, echo);
               }
             }
           );
         } else{
-          echo={type:'text',text:'Mohon mengulang kembali'};
+          const hasil={type:'text',text:'Mohon mengulang kembali'};
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
-      });}
-    catch(e){
-      echo = { type: 'text', text: 'salahnya diTry' };
-    }
-    echo = { type: 'text', text: 'bukan di catch-nya' };
-    // return client.replyMessage(event.replyToken, echo);
+      });
+
+    return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
   //   return client.replyMessage(event.replyToken, b);
-  
+  const echo = { type: 'text', text: 'salahnya dimana?' };
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
