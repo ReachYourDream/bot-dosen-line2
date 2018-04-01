@@ -41,7 +41,7 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    echo = { type:'text', text: urlDosen };
+    window.echo = { type:'text', text: urlDosen };
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
@@ -73,7 +73,7 @@ function handleEvent(event) {
         }
       });
 
-    return client.replyMessage(event.replyToken, echo);
+    return client.replyMessage(event.replyToken, window.echo);
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
@@ -81,7 +81,7 @@ function handleEvent(event) {
   
 
   // use reply API
-  return client.replyMessage(event.replyToken, echo);
+  return client.replyMessage(event.replyToken, window.echo);
 }
 
  //  if(event.message.text.substring(0,4)==dosen){
