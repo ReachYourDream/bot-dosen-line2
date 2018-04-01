@@ -42,7 +42,7 @@ function handleEvent(event) {
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    echo = { type:'text', text: urlDosen };
+    echo = { type:'text', text: urlDosen+'a' };
     return client.replyMessage(event.replyToken, echo);
     try{https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
