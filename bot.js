@@ -43,7 +43,7 @@ function handleEvent(event) {
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
     // return client.replyMessage(event.replyToken, echo);
-    https.get(urlDosen,res => {
+    try{https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
         // return client.replyMessage(event.replyToken, echo);
@@ -71,7 +71,10 @@ function handleEvent(event) {
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
-      });
+      });}
+    catch(e){
+      echo = {type:'text',text:'Bisa di catch'};
+    }
 
     return client.replyMessage(event.replyToken, echo);
   }
