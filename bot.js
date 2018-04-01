@@ -44,7 +44,7 @@ function handleEvent(event) {
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
     // return client.replyMessage(event.replyToken, echo);
-    https.get(urlDosen,res => {
+    try{https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         echo = {type: 'text', text: res.headers['content-type'] + 'a'};
         // return client.replyMessage(event.replyToken, echo);
@@ -72,7 +72,12 @@ function handleEvent(event) {
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
-      });
+      });}
+    catch(e){
+      const a  = String(e);
+      echo = {type:'text',text:a};
+      return client.replyMessage(event.replyToken, echo);
+    }
 
   return client.replyMessage(event.replyToken, echo);
   }
