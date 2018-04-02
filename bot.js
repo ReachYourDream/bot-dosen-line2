@@ -80,10 +80,10 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      delay(detik,echo);
+      delay(detik,event,echo);
       
   } else{
-    
+
   // use reply API
   return client.replyMessage(event.replyToken, echo);
   }
@@ -104,7 +104,7 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-function delay(detik,echo){
+function delay(detik,event,echo){
   setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
