@@ -6,7 +6,6 @@ const https = require('https');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 var echo = { type: 'text', text: 'salahnya dimana?' };
 var status=0;
-var loop = 0;
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -45,6 +44,7 @@ function handleEvent(event) {
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
+    status = 0;
     var detik= 0;
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
@@ -103,10 +103,12 @@ function handleEvent(event) {
  // }
  // return client.replyMessage(event.replyToken,dosen);
 function delay(detik){
-  setTimeout(function tes(detik){
+  setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
-    if(status!=1){setTimeout(tes(detik),1000);} else{
+    if(status!=1){
+      delay(detik);
+    } else{
       return;
     }
   },1000);
