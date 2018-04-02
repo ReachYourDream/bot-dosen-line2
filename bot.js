@@ -91,6 +91,7 @@ function handleEvent(event) {
       var bx= 0;
       while(status== 0){
         bx = 1;
+        console.log('dilewatin');
       }
       return client.replyMessage(event.replyToken, echo);
   } else{
