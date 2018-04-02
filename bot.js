@@ -80,8 +80,8 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      const coba = delay(detik);
-      return client.replyMessage(event.replyToken, echo);
+      delay(detik,echo);
+      
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
@@ -102,14 +102,14 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-function delay(detik){
+function delay(detik,echo){
   setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
     if(status!=1){
       delay(detik);
     } else{
-      return 1;
+      return client.replyMessage(event.replyToken, echo);
     }
   },1000);
 }
