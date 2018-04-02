@@ -74,7 +74,7 @@ function handleEvent(event) {
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
-              echo ={type:'text',text:body['status']};
+              echo ={type:'text',text: body['status']};
               status = 1;
               // return client.replyMessage(event.replyToken, echo);
               }
@@ -87,7 +87,7 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      status = delay(detik,echo,event);
+      delay(detik,echo,event);
       // var bx= 0;
       // while(status== 0){
       //   bx = 1;
@@ -125,6 +125,7 @@ function delay(detik,echo,event){
     if(status!=1){
       delay(detik);
     } else{
+      console.log('berarti bisa');
       return client.replyMessage(event.replyToken, echo);
     }
   },1000);
