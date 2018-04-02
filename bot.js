@@ -88,9 +88,9 @@ function handleEvent(event) {
         }
       });
       status = delay(detik);
-      var b= 0;
+      var bx= 0;
       while(status== 0){
-        b = 1;
+        bx = 1;
       }
       return client.replyMessage(event.replyToken, echo);
   } else{
