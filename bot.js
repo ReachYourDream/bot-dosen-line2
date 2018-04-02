@@ -45,6 +45,7 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
+  echo = { type: 'text', text: 'salahnya dimana?' };
   status=1;
   const b = String(event.message.text);
   if(b.substring(0,5)=='dosen'){
