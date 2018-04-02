@@ -83,7 +83,7 @@ function handleEvent(event) {
             }
           );
         } else{
-          echo = {type:'text',text:'Mohon mengulang kembali'};
+          echo = { type:'text', text: 'Mohon mengulang kembali' };
           status = 1;
           console.log('gagal dan mengulang');
 
