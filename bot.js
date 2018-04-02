@@ -87,8 +87,11 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      // status = delay(detik);
-      while(status== 0){}
+      status = delay(detik);
+      var b= 0;
+      while(status== 0){
+        b = 1;
+      }
       return client.replyMessage(event.replyToken, echo);
   } else{
 
