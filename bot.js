@@ -69,6 +69,7 @@ function handleEvent(event) {
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
               echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
+            console.log('sukses');
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
@@ -76,6 +77,7 @@ function handleEvent(event) {
               // message.channel.send(body['status']);
               echo ={type:'text',text: body['status']};
               status = 1;
+              console.log('gagal');
               // return client.replyMessage(event.replyToken, echo);
               }
             }
@@ -83,6 +85,8 @@ function handleEvent(event) {
         } else{
           echo = {type:'text',text:'Mohon mengulang kembali'};
           status = 1;
+          console.log('gagal dan mengulang');
+
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
