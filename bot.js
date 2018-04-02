@@ -82,14 +82,16 @@ function handleEvent(event) {
       });
       delay(detik,echo);
       
+  } else{
+    
+  // use reply API
+  return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
   //   return client.replyMessage(event.replyToken, b);
   
 
-  // use reply API
-  return client.replyMessage(event.replyToken, echo);
 } 
 
  //  if(event.message.text.substring(0,4)==dosen){
