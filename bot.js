@@ -5,6 +5,7 @@ const express = require('express');
 const https = require('https');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 var echo = { type: 'text', text: 'salahnya dimana?' };
+var status=0;
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -79,10 +80,7 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      do{
-        detik++;
-        setTimeout(delay(detik),1000);
-      }while(status == 0);
+      delay(detik);
     return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -105,7 +103,11 @@ function handleEvent(event) {
  // }
  // return client.replyMessage(event.replyToken,dosen);
 function delay(detik){
-  console.log('delay ke: ' + detik);
+  setTimeout(function(){
+    detik++;
+    console.log('Detik ke: '+ detik);
+    if(status!=1){delay(detik);}
+  },1000);
 }
 
 // listen on port
