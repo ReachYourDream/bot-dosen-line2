@@ -44,7 +44,7 @@ function handleEvent(event) {
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
     var status = 0;
-    var delay= 0;
+    var detik= 0;
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
@@ -80,8 +80,8 @@ function handleEvent(event) {
         }
       });
       do{
-        delay++;
-        setTimeout(delay,1000);
+        detik++;
+        setTimeout(delay(detik),1000);
       }while(status == 0);
     return client.replyMessage(event.replyToken, echo);
   }
