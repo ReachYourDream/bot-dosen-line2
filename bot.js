@@ -81,6 +81,8 @@ function handleEvent(event) {
         }
       });
       delay(detik);
+      do{}
+      while(status!=1);
     return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
