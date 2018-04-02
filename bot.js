@@ -44,7 +44,6 @@ function handleEvent(event) {
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
-    var status = 0;
     var detik= 0;
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosen,res => {
@@ -80,7 +79,7 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      delay(detik);
+      // delay(detik);
     return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
