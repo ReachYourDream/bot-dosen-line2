@@ -125,7 +125,7 @@ function handleEvent(event) {
 function delay(detik,echo,event){
   setTimeout(function(){
     detik++;
-    console.log('Detik ke: '+ detik);
+    console.log(echo + 'Detik ke: '+ detik);
     if(status!=1){
       delay(detik);
     } else{
