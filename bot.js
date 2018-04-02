@@ -87,16 +87,18 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      status = delay(detik);
-      var bx= 0;
-      while(status== 0){
-        bx = 1;
-        console.log('dilewatin');
-      }
-      return client.replyMessage(event.replyToken, echo);
+      status = delay(detik,echo,event);
+      // var bx= 0;
+      // while(status== 0){
+      //   bx = 1;
+      //   console.log('dilewatin');
+      // }
+      // status=0;
+      // return client.replyMessage(event.replyToken, echo);
   } else{
 
   // use reply API
+  status=0;
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -116,15 +118,14 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-function delay(detik){
+function delay(detik,echo,event){
   setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
     if(status!=1){
       delay(detik);
     } else{
-      var a= 1;
-      return a;
+      return client.replyMessage(event.replyToken, echo);
     }
   },1000);
 }
