@@ -80,7 +80,7 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      delay(detik,replyToken,echo);
+      delay(detik,event.replyToken,echo);
       
   } else{
 
