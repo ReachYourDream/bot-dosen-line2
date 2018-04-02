@@ -21,6 +21,7 @@ const app = express();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
+
   Promise
     .all(req.body.events.map(handleEvent))
     .then((result) => res.json(result))
@@ -36,14 +37,16 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-
+  status=1;
   const b = String(event.message.text);
   if(b.substring(0,5)=='dosen'){
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
+    var status = 0;
+    var delay= 0;
     // return client.replyMessage(event.replyToken, echo);
-    try{https.get(urlDosen,res => {
+    https.get(urlDosen,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
         // return client.replyMessage(event.replyToken, echo);
@@ -57,26 +60,29 @@ function handleEvent(event) {
             body = JSON.parse(body);
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
-              echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};}
+              echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
+            status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
               // message.channel.send(body['status']);
               echo ={type:'text',text:body['status']};
+              status = 1;
               // return client.replyMessage(event.replyToken, echo);
               }
             }
           );
         } else{
           echo = {type:'text',text:'Mohon mengulang kembali'};
+          status = 1;
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
-      });}
-    catch(e){
-      echo = {type:'text',text:'Bisa di catch'};
-    }
-
+      });
+      do{
+        delay++;
+        setTimeout(delay,1000);
+      }while(status == 0);
     return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -86,7 +92,7 @@ function handleEvent(event) {
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
-}
+} 
 
  //  if(event.message.text.substring(0,4)==dosen){
  //     const namaDosen = event.message.substring(5);
@@ -98,7 +104,9 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-
+function delay(detik){
+  console.log('delay ke: ' + detik);
+}
 
 // listen on port
 const port = process.env.PORT || 3000;
