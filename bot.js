@@ -80,10 +80,8 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      delay(detik);
-      do{}
-      while(status!=1);
-    return client.replyMessage(event.replyToken, echo);
+      const coba = delay(detik);
+      return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
   // const echo = { type: 'text', text: b };
@@ -111,7 +109,7 @@ function delay(detik){
     if(status!=1){
       delay(detik);
     } else{
-      return;
+      return 1;
     }
   },1000);
 }
