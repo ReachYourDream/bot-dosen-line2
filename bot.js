@@ -80,7 +80,7 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      // delay(detik);
+      delay(detik);
     return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
