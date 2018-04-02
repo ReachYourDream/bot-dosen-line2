@@ -3,6 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
+var timeout = require('connect-timeout');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 var echo = { type: 'text', text: 'salahnya dimana?' };
 var status=0;
@@ -18,6 +19,12 @@ const client = new line.Client(config);
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
+app.use(timeout(120000));
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next){
+  if (!req.timedout) next();
+}
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
@@ -80,7 +87,7 @@ function handleEvent(event) {
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      delay(detik,event.replyToken,echo);
+      delay(detik,event,echo);
       
   } else{
 
@@ -104,14 +111,14 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-function delay(detik,replyToken,echo){
+function delay(detik,event,echo){
   setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
     if(status!=1){
       delay(detik);
     } else{
-      return client.replyMessage(replyToken, echo);
+      return client.replyMessage(event.replyToken, echo);
     }
   },1000);
 }
