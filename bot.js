@@ -49,6 +49,12 @@ function handleEvent(event) {
   status=1;
   const b = String(event.message.text);
   if(b.substring(0,5)=='dosen'){
+    var date = new Date();
+    var date1 = date.getHours()+7;
+    if(date1>=22 && date1<=24){
+      echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
+      return client.replyMessage(event.replyToken, echo);
+    }
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
     echo = { type:'text', text: urlDosen };
