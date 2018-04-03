@@ -99,6 +99,10 @@ function handleEvent(event) {
         }
       });
       delay(detik,event);
+      do{
+        var xcd= 1;
+      }
+      while(status==0);
       console.log('sudah dijalankan dulu');
       // var bx= 0;
       // while(status== 0){
