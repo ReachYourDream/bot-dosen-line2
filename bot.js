@@ -93,6 +93,7 @@ function handleEvent(event) {
         }
       });
       delay(detik,event);
+      console.log('sudah dijalankan dulu');
       // var bx= 0;
       // while(status== 0){
       //   bx = 1;
