@@ -5,7 +5,7 @@ const express = require('express');
 const https = require('https');
 var timeout = require('connect-timeout');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
-var echo = { type: 'text', text: 'salahnya dimana?' };
+var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: dosen(spasi) nama dosen' };
 var status=0;
 // create LINE SDK config from env variables
 const config = {
