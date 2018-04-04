@@ -48,11 +48,12 @@ function handleEvent(event) {
   echo = { type: 'text', text: 'salahnya dimana?' };
   status=1;
   const b = String(event.message.text);
-  if(b.substring(0,5)=='dosen'){
+  if(b.toLowerCase().substring(0,5)=='dosen'){
     var date = new Date();
     var date1 = date.getHours()+7;
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
+      console.log('Hasil: ' + echo.text);
       return client.replyMessage(event.replyToken, echo);
     }
     const namaDosen = b.substring(6);
@@ -76,7 +77,6 @@ function handleEvent(event) {
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
               echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
-            console.log('sukses');
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
@@ -84,7 +84,6 @@ function handleEvent(event) {
               // message.channel.send(body['status']);
               echo ={type:'text',text: body['status']};
               status = 1;
-              console.log('gagal');
               // return client.replyMessage(event.replyToken, echo);
               }
             }
@@ -92,15 +91,13 @@ function handleEvent(event) {
         } else{
           echo = { type:'text', text: 'Mohon mengulang kembali' };
           status = 1;
-          console.log('gagal dan mengulang');
 
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
       });
-      console.log('token: ' + event.replyToken);
       delay(detik,event.replyToken);
-      console.log('sudah dijalankan dulu');
+      console.log('Request: ' + b);
       // var bx= 0;
       // while(status== 0){
       //   bx = 1;
@@ -134,11 +131,11 @@ function handleEvent(event) {
 function delay(detik,replyTokena){
   setTimeout(function(){
     detik++;
-    console.log(echo.text + 'Detik ke: '+ detik);
+    console.log('Detik ke: '+ detik);
     if(status!=1){
       delay(detik,replyTokena);
     } else{
-      console.log('berarti bisa ' + replyTokena);
+      console.log('hasil: ' + echo.text);
       return client.replyMessage(replyTokena, echo);
     }
   },1000);
