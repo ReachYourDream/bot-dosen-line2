@@ -136,7 +136,7 @@ function delay(detik,replyTokena){
     detik++;
     console.log(echo.text + 'Detik ke: '+ detik);
     if(status!=1){
-      delay(detik);
+      delay(detik,replyTokena);
     } else{
       console.log('berarti bisa ' + replyTokena);
       return client.replyMessage(replyTokena, echo);
