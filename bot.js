@@ -131,15 +131,15 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-function delay(detik,replyToken){
+function delay(detik,replyTokena){
   setTimeout(function(){
     detik++;
     console.log(echo.text + 'Detik ke: '+ detik);
     if(status!=1){
       delay(detik);
     } else{
-      console.log('berarti bisa ' + replyToken);
-      return client.replyMessage(replyToken, echo);
+      console.log('berarti bisa ' + replyTokena);
+      return client.replyMessage(replyTokena, echo);
     }
   },1000);
 }
