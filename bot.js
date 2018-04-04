@@ -5,7 +5,9 @@ const express = require('express');
 const https = require('https');
 var timeout = require('connect-timeout');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
-var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: dosen(spasi) nama dosen' };
+var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
+  dosen(spasi)nama dosen\n\
+  Contoh: Dosen Rudi' };
 var status=0;
 // create LINE SDK config from env variables
 const config = {
@@ -45,7 +47,9 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  echo = { type: 'text', text: 'salahnya dimana?' };
+  echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
+  dosen(spasi)nama dosen\n\
+  Contoh: Dosen Rudi' };
   status=1;
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='dosen'){
