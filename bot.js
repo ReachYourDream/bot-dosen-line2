@@ -58,8 +58,8 @@ function handleEvent(event) {
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
       console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
-      push = { type: 'text', text: 'Sabar mas'};
-      client.pushMessage(event.source.userId, push);
+      var pushi = { type: 'text', text: 'Sabar mas'};
+      client.pushMessage(event.source.userId, pushi);
       return client.replyMessage(event.replyToken, echo);
     }
     const namaDosen = b.substring(6);
