@@ -62,8 +62,8 @@ function handleEvent(event) {
     }
     const namaDosen = b.substring(6);
     const urlDosen = url+namaDosen;
-    echo = { type:'text', text: 'Mohon menunggu' };
-    client.replyMessage(event.replyToken,echo);
+    // echo = { type:'text', text: 'Mohon menunggu' };
+    // client.replyMessage(event.replyToken,echo);
     status = 0;
     var detik= 0;
     // return client.replyMessage(event.replyToken, echo);
