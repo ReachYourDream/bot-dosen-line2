@@ -4,7 +4,7 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
 var timeout = require('connect-timeout');
-const url = 'https://radityop.000webhostapp.com/index.php?nama=';
+const url = 'https://radityop.000webhostapp.com/index.php?fungsi=nama=';
 var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
@@ -54,6 +54,11 @@ function handleEvent(event) {
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='dosen'){
     const cek = '&fungsi=cek';
+    client.getProfile(event.source.userID)
+    .then((profile) =>{
+      console.log(profile.displayName);
+    }
+      );
     var date = new Date();
     var date1 = date.getHours()+7;
     if(date1>=22 && date1<=24){
