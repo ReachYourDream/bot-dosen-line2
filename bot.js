@@ -47,6 +47,11 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
+  client.getProfile(event.source.userId)
+    .then((profile) =>{
+      console.log(profile.displayName);
+    }
+      );
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
@@ -54,11 +59,6 @@ function handleEvent(event) {
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='dosen'){
     const cek = '&fungsi=cek';
-    client.getProfile(event.source.userId)
-    .then((profile) =>{
-      console.log(profile.displayName);
-    }
-      );
     var date = new Date();
     var date1 = date.getHours()+7;
     if(date1>=22 && date1<=24){
