@@ -86,6 +86,7 @@ function handleEvent(event) {
             if(body['hasil']=='sukses'){
               if(body['jumlah']>1){
                 var str = '';
+                var x;
                 for(x = 0; x<body['jumlah'];x++){
                   str = str+ x-1 + '. ' + body['nama'][x] + body['status'][x] + '\n';
                 }
