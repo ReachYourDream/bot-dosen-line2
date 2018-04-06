@@ -54,7 +54,7 @@ function handleEvent(event) {
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='dosen'){
     const cek = '&fungsi=cek';
-    client.getProfile(event.source.userID)
+    client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(profile.displayName);
     }
