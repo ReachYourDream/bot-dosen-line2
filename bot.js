@@ -64,6 +64,10 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken, echo);
     }
     const namaDosen = b.substring(6);
+    if(namaDosen.length<3){
+      echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
+      return client.replyMessage(event.replyToken,echo);
+    }
     const urlDosen = url+namaDosen+cek;
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
