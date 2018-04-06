@@ -90,7 +90,7 @@ function handleEvent(event) {
                 for(x = 0; x<body['jumlah'];x++){
                   str = str+ x-1 + '. ' + body['nama'][x] + body['status'][x] + '\n';
                 }
-                echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + $namaDosen + '\" Yaitu:\n' + str;
+                echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str;
               } else{
               echo.text= 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status'];
               }
