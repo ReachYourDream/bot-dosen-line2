@@ -53,6 +53,7 @@ function handleEvent(event) {
   status=1;
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='dosen'){
+    const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours()+7;
     if(date1>=22 && date1<=24){
@@ -63,7 +64,7 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken, echo);
     }
     const namaDosen = b.substring(6);
-    const urlDosen = url+namaDosen;
+    const urlDosen = url+namaDosen+cek;
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
     status = 0;
@@ -83,7 +84,15 @@ function handleEvent(event) {
             body = JSON.parse(body);
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
-              echo = {type:'text',text: 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status']};
+              if(body['jumlah']>1){
+                var str = ''
+                for(x = 0; x<body['jumlah'];x++){
+                  str = str+ x-1 + '. ' + body['nama'][x] + body['status'][x] + '\n';
+                }
+                echo.text = 'Terdapat 2 dosen dengan nama \"' + $namaDosen + '\" Yaitu:\n' + str;
+              } else{
+              echo.text= 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status'];
+              }
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
