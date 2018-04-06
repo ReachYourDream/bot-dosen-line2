@@ -88,7 +88,7 @@ function handleEvent(event) {
                 var str = '';
                 var x;
                 for(x = 0; x<body['jumlah'];x++){
-                  str = str + (x-1) + '. ' + body['nama'][x] + body['status'][x] + '\n';
+                  str = str + (x+1) + '. ' + body['nama'][x] + ' (' body['status'][x] + ')\n';
                 }
                 echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str;
               } else{
