@@ -4,7 +4,7 @@ const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
 var timeout = require('connect-timeout');
-const url = 'https://radityop.000webhostapp.com/index.php?fungsi=nama=';
+const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
