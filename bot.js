@@ -17,8 +17,7 @@ const config = {
 
 // create LINE SDK client
 const client = new line.Client(config);
-var user = '';
-var userId = '';
+var log = '';
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -57,12 +56,11 @@ function handleEvent(event) {
   
   client.getProfile(event.source.userId)
     .then((profile) =>{
-      console.log(profile.displayName);
+      console.log(JSON.stringify(profile));
       // global.userId = String(profile.userId);
     }
       );
-    oldLog('user' + user);
-    return client.replyMessage(event.replyToken,echo);
+    var jsonProfile = JSON.parse(log);
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
@@ -85,8 +83,8 @@ function handleEvent(event) {
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
     }
-    console.log("abc: " + global.$log);
-    const logging = '&user=' + global.user + '&userid=' + global.userId;
+
+    const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
     const urlDosen = url+namaDosen+cek+logging;
     console.log(urlDosen);
     // echo = { type:'text', text: 'Mohon menunggu' };
