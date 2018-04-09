@@ -44,7 +44,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 function coba(value){
   console.log(value);
   var a = value;
-  echo.text(a);
+  echo.text= string(a);
 }
 // event handler
 function handleEvent(event) { 
