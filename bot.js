@@ -79,6 +79,7 @@ function handleEvent(event) {
     }
     var log = '&user=' + user + '&userid=' + userId;
     const urlDosen = url+namaDosen+cek+log;
+    console.log(urlDosen);
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
     status = 0;
