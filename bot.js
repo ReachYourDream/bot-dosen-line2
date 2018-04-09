@@ -40,7 +40,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
-global.$log = array();
+global.$log = [];
 console.oldLog = console.log;
 console.log = function(value)
 {
