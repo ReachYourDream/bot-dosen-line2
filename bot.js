@@ -18,7 +18,6 @@ const config = {
 // create LINE SDK client
 const client = new line.Client(config);
 var user = '';
-var xyzabcdefg = '';
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -74,8 +73,7 @@ function handleEvent(event) {
     var date1 = date.getHours()+7;
     // do{oldLog("log:"+user);}
     // while(user.length===0);
-    xyzabcdefg = user;
-    oldLog(xyzabcdefg.length);
+    oldLog('panjang awal: ' + user.length);
     delay1(0);
     
     if(date1>=22 && date1<=24){
@@ -135,12 +133,12 @@ function delay(detik,replyTokena){
     }
   },1000);
 }
-function delay1(detik,urlDosen){
+function delay1(detiks,urlDosen){
   setTimeout(function(){
-    detik++;
-    oldLog('Detik profil ke: '+ detik + ' ' + user.length);
-    if(xyzabcdefg==0){
-      delay(detik);
+    detiks++;
+    oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
+    if(user.length==0){
+      delay(detiks,urlDosen);
     } else{
       var jsonProfile = JSON.parse(user);
       const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
