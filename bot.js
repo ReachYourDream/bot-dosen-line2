@@ -72,7 +72,7 @@ function handleEvent(event) {
     var date = new Date();
     var date1 = date.getHours()+7;
     do{oldLog("log:"+user);}
-    while(!empty(user));
+    while(user.length===0);
     var jsonProfile = JSON.parse(user);
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
