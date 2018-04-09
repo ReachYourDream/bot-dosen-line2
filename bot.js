@@ -60,8 +60,6 @@ function handleEvent(event) {
       // global.userId = String(profile.userId);
     }
       );
-    oldLog("log:"+user);
-    var jsonProfile = JSON.parse(user);
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
@@ -72,6 +70,8 @@ function handleEvent(event) {
     const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours()+7;
+    oldLog("log:"+user);
+    var jsonProfile = JSON.parse(user);
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
       console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
@@ -184,7 +184,7 @@ function delay(detik,replyTokena){
 // listen on port
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`listening on ${port}`);
+  oldLog(`listening on ${port}`);
 });
 // //   //Akan mendengarkan message yang dimulai dengan tanda '!'
 // //   if(message.author.equals(bot.user)) return;
