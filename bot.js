@@ -45,7 +45,7 @@ console.oldLog = console.log;
 console.log = function(value)
 {
     console.oldLog(value);
-    array_push(global.$log,value);
+    global.$log.push(value);
 };
 // event handler
 function handleEvent(event) { 
