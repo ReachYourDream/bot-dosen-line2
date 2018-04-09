@@ -27,7 +27,7 @@ app.use(haltOnTimedout);
 function haltOnTimedout(req, res, next){
   if (!req.timedout) next();
 }
-
+window.$log = '';
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -41,6 +41,11 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
+console.log = function(value)
+{
+    console.oldLog(value);
+    window.$log = value;
+};
 // event handler
 function handleEvent(event) { 
   if (event.type !== 'message' || event.message.type !== 'text') {
@@ -49,11 +54,7 @@ function handleEvent(event) {
   }
   console.oldLog = console.log;
 
-console.log = function(value)
-{
-    console.oldLog(value);
-    window.$log = value;
-};
+
 
 
   client.getProfile(event.source.userId)
