@@ -47,13 +47,18 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  ;
-  ;
+  console.oldLog = console.log;
+
+console.log = function(value)
+{
+    console.oldLog(value);
+    window.$log = value;
+};
+
+
   client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(profile.displayName);
-      const user = profile.displayName;
-      const userId = profile.userId;
     }
       );
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
@@ -77,6 +82,7 @@ function handleEvent(event) {
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echoingho);
     }
+    console.log(window.$log);
     const log = '&user=' + user + '&userid=' + userId;
     const urlDosen = url+namaDosen+cek+log;
     console.log(urlDosen);
