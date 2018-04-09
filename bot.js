@@ -17,7 +17,8 @@ const config = {
 
 // create LINE SDK client
 const client = new line.Client(config);
-
+var user = '';
+var userId = '';
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -27,6 +28,12 @@ app.use(haltOnTimedout);
 function haltOnTimedout(req, res, next){
   if (!req.timedout) next();
 }
+var oldLog = console.log;
+console.log= function(value){
+  user= value;
+  oldLog(value);
+}
+
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
@@ -50,14 +57,16 @@ function handleEvent(event) {
   
   client.getProfile(event.source.userId)
     .then((profile) =>{
-      console.log(JSON.stringify(profile));
+      console.log(profile.displayName);
       // global.userId = String(profile.userId);
     }
       );
+    oldLog('user' + user);
     return client.replyMessage(event.replyToken,echo);
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
+
   status=1;
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='dosen'){
