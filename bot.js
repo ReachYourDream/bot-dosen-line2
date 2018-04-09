@@ -41,8 +41,11 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-global.user = '';
-global.userid = '';
+function coba(value){
+  console.log(value);
+  var a = value;
+  echo.text = value;
+}
 // event handler
 function handleEvent(event) { 
   if (event.type !== 'message' || event.message.type !== 'text') {
@@ -50,17 +53,14 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
   
-
-
-
-
   client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(profile.displayName);
-      console.log(String(profile.displayName));
+      coba(profile.displayName);
       // global.userId = String(profile.userId);
     }
       );
+    return client.replyMessage(event.replyToken,echo);
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
