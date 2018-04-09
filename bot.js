@@ -75,6 +75,7 @@ function handleEvent(event) {
     // while(user.length===0);
     var xyzabcdefg= user;
     oldLog(xyzabcdefg.length);
+    delay1(0);
     var jsonProfile = JSON.parse(user);
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
@@ -181,6 +182,18 @@ function delay(detik,replyTokena){
     } else{
       console.log('hasil: ' + echo.text);
       return client.replyMessage(replyTokena, echo);
+    }
+  },1000);
+}
+function delay1(detik){
+  setTimeout(function(){
+    detik++;
+    console.log('Detik profil ke: '+ detik + ' ' + xyzabcdefg.length);
+    if(xyzabcdefg==0){
+      delay(detik);
+    } else{
+      console.log('akhirnya bisa');
+      return;
     }
   },1000);
 }
