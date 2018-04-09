@@ -18,6 +18,7 @@ const config = {
 // create LINE SDK client
 const client = new line.Client(config);
 var user = '';
+var xyzabcdefg = '';
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -73,7 +74,7 @@ function handleEvent(event) {
     var date1 = date.getHours()+7;
     // do{oldLog("log:"+user);}
     // while(user.length===0);
-    var xyzabcdefg= user;
+    xyzabcdefg = user;
     oldLog(xyzabcdefg.length);
     delay1(0);
     var jsonProfile = JSON.parse(user);
@@ -188,11 +189,11 @@ function delay(detik,replyTokena){
 function delay1(detik){
   setTimeout(function(){
     detik++;
-    console.log('Detik profil ke: '+ detik + ' ' + xyzabcdefg.length);
+    oldLog('Detik profil ke: '+ detik + ' ' + xyzabcdefg.length);
     if(xyzabcdefg==0){
       delay(detik);
     } else{
-      console.log('akhirnya bisa');
+      oldLog('akhirnya bisa');
       return;
     }
   },1000);
