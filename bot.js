@@ -29,7 +29,7 @@ function haltOnTimedout(req, res, next){
 }
 var oldLog = console.log;
 console.log= function(value){
-  user= value;
+  user+= value;
   oldLog(value);
 }
 
