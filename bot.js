@@ -60,6 +60,7 @@ function handleEvent(event) {
       // global.userId = String(profile.userId);
     }
       );
+    oldLog("log:"+log);
     var jsonProfile = JSON.parse(log);
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
