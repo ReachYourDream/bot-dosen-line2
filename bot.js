@@ -77,7 +77,7 @@ function handleEvent(event) {
     xyzabcdefg = user;
     oldLog(xyzabcdefg.length);
     delay1(0);
-    var jsonProfile = JSON.parse(user);
+    
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
       console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
@@ -90,16 +90,75 @@ function handleEvent(event) {
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
     }
+    var urlDosen = url+namaDosen+cek;
+    delay(0,urlDosen);
+    
+      // var bx= 0;
+      // while(status== 0){
+      //   bx = 1;
+      //   console.log('dilewatin');
+      // }
+      // status=0;
+      // return client.replyMessage(event.replyToken, echo);
+  } else{
 
-    const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
-    const urlDosen = url+namaDosen+cek+logging;
-    console.log(urlDosen);
+  // use reply API
+  status=0;
+  return client.replyMessage(event.replyToken, echo);
+  }
+  // create a echoing text message
+  // const echo = { type: 'text', text: b };
+  //   return client.replyMessage(event.replyToken, b);
+  
+
+} 
+
+ //  if(event.message.text.substring(0,4)==dosen){
+ //     const namaDosen = event.message.substring(5);
+ //     const dosen = {type:'text',text: 'bisa dosen'};
+ //     const echo = { type: 'text', text: 'salahnya dimana1?' };
+ //   }
+ //  else{
+ //   const dosen= {type:'text',text: 'nggak bisa dosen'};
+ //   const echo = { type: 'text', text: 'salahnya dimana2?' };
+ // }
+ // return client.replyMessage(event.replyToken,dosen);
+function delay(detik,replyTokena){
+  setTimeout(function(){
+    detik++;
+    console.log('Detik ke: '+ detik);
+    if(status!=1){
+      delay(detik,replyTokena);
+    } else{
+      console.log('hasil: ' + echo.text);
+      return client.replyMessage(replyTokena, echo);
+    }
+  },1000);
+}
+function delay1(detik,urlDosen){
+  setTimeout(function(){
+    detik++;
+    oldLog('Detik profil ke: '+ detik + ' ' + user.length);
+    if(xyzabcdefg==0){
+      delay(detik);
+    } else{
+      var jsonProfile = JSON.parse(user);
+      const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
+      oldLog('akhirnya bisa ' + jsonProfile.displayName + ' ' + jsonProfile.displayName);
+      var urlDosens = urlDosen + logging;
+      oldLog(urlDosens);
+      akses_web(urlDosens);
+    }
+  },1000);
+}
+function akses_web(urlDosens){
+    console.log(urlDosens);
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
     status = 0;
     var detik= 0;
     // return client.replyMessage(event.replyToken, echo);
-    https.get(urlDosen,res => {
+    https.get(urlDosens,res => {
         console.log(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
         // return client.replyMessage(event.replyToken, echo);
@@ -144,61 +203,7 @@ function handleEvent(event) {
       });
       delay(detik,event.replyToken);
       console.log('Request: ' + b);
-      // var bx= 0;
-      // while(status== 0){
-      //   bx = 1;
-      //   console.log('dilewatin');
-      // }
-      // status=0;
-      // return client.replyMessage(event.replyToken, echo);
-  } else{
-
-  // use reply API
-  status=0;
-  return client.replyMessage(event.replyToken, echo);
-  }
-  // create a echoing text message
-  // const echo = { type: 'text', text: b };
-  //   return client.replyMessage(event.replyToken, b);
-  
-
-} 
-
- //  if(event.message.text.substring(0,4)==dosen){
- //     const namaDosen = event.message.substring(5);
- //     const dosen = {type:'text',text: 'bisa dosen'};
- //     const echo = { type: 'text', text: 'salahnya dimana1?' };
- //   }
- //  else{
- //   const dosen= {type:'text',text: 'nggak bisa dosen'};
- //   const echo = { type: 'text', text: 'salahnya dimana2?' };
- // }
- // return client.replyMessage(event.replyToken,dosen);
-function delay(detik,replyTokena){
-  setTimeout(function(){
-    detik++;
-    console.log('Detik ke: '+ detik);
-    if(status!=1){
-      delay(detik,replyTokena);
-    } else{
-      console.log('hasil: ' + echo.text);
-      return client.replyMessage(replyTokena, echo);
-    }
-  },1000);
 }
-function delay1(detik){
-  setTimeout(function(){
-    detik++;
-    oldLog('Detik profil ke: '+ detik + ' ' + user.length);
-    if(xyzabcdefg==0){
-      delay(detik);
-    } else{
-      oldLog('akhirnya bisa ' + user);
-      return;
-    }
-  },1000);
-}
-
 // listen on port
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
