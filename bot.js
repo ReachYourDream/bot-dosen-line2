@@ -193,7 +193,7 @@ function delay1(detik){
     if(xyzabcdefg==0){
       delay(detik);
     } else{
-      oldLog('akhirnya bisa');
+      oldLog('akhirnya bisa ' + xyzabcdefg);
       return;
     }
   },1000);
