@@ -17,7 +17,7 @@ const config = {
 
 // create LINE SDK client
 const client = new line.Client(config);
-var log = '';
+var user = '';
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -29,7 +29,7 @@ function haltOnTimedout(req, res, next){
 }
 var oldLog = console.log;
 console.log= function(value){
-  log= value;
+  user= value;
   oldLog(value);
 }
 
@@ -60,8 +60,8 @@ function handleEvent(event) {
       // global.userId = String(profile.userId);
     }
       );
-    oldLog("log:"+log);
-    var jsonProfile = JSON.parse(log);
+    oldLog("log:"+user);
+    var jsonProfile = JSON.parse(user);
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
