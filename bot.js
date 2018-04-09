@@ -198,7 +198,7 @@ function akses_web(urlDosens,replyTokena){
         }
       });
       delay(detik,replyTokena);
-      console.log('Request: ' + b);
+      // console.log('Request: ' + b);
 }
 // listen on port
 const port = process.env.PORT || 3000;
