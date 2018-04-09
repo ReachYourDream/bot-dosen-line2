@@ -83,10 +83,10 @@ function handleEvent(event) {
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echoingho);
     }
-    console.log(global.$log);
-    const log = '&user=' + user + '&userid=' + userId;
+    console.log("abc: " + global.$log);
+    // const log = '&user=' + user + '&userid=' + userId;
     const urlDosen = url+namaDosen+cek+log;
-    console.log(urlDosen);
+    // console.log(urlDosen);
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
     status = 0;
