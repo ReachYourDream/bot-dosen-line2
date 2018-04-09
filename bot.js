@@ -189,11 +189,11 @@ function delay(detik,replyTokena){
 function delay1(detik){
   setTimeout(function(){
     detik++;
-    oldLog('Detik profil ke: '+ detik + ' ' + xyzabcdefg.length);
+    oldLog('Detik profil ke: '+ detik + ' ' + user.length);
     if(xyzabcdefg==0){
       delay(detik);
     } else{
-      oldLog('akhirnya bisa ' + xyzabcdefg);
+      oldLog('akhirnya bisa ' + user);
       return;
     }
   },1000);
