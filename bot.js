@@ -42,13 +42,13 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 // event handler
-function handleEvent(event) {
+function handleEvent(event) { 
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  var user = '';
-  var userId = '';
+  var user;
+  var userId;
   client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(profile.displayName);
