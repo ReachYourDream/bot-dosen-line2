@@ -40,11 +40,12 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
+global.$log = array();
 console.oldLog = console.log;
 console.log = function(value)
 {
     console.oldLog(value);
-    global.$log = value;
+    array_push(global.$log,value);
 };
 // event handler
 function handleEvent(event) { 
@@ -81,7 +82,7 @@ function handleEvent(event) {
     const namaDosen = b.substring(6);
     if(namaDosen.length<3){
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
-      return client.replyMessage(event.replyToken,echoingho);
+      return client.replyMessage(event.replyToken,echo);
     }
     console.log("abc: " + global.$log);
     // const log = '&user=' + user + '&userid=' + userId;
