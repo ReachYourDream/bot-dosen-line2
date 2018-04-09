@@ -74,7 +74,6 @@ function handleEvent(event) {
     // do{oldLog("log:"+user);}
     // while(user.length===0);
     oldLog('panjang awal: ' + user.length);
-    delay1(0);
     
     // if(date1>=22 && date1<=24){
     //   echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
@@ -89,7 +88,7 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken,echo);
     }
     var urlDosen = url+namaDosen+cek;
-    delay(0,urlDosen);
+    delay1(0,urlDosen);
     
       // var bx= 0;
       // while(status== 0){
