@@ -41,11 +41,6 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-function coba(value){
-  console.log(value);
-  var a = value;
-  echo.text= String(a);
-}
 // event handler
 function handleEvent(event) { 
   if (event.type !== 'message' || event.message.type !== 'text') {
@@ -55,8 +50,7 @@ function handleEvent(event) {
   
   client.getProfile(event.source.userId)
     .then((profile) =>{
-      console.log(profile.displayName);
-      coba(profile.displayName);
+      console.log(JSON.stringify(profile));
       // global.userId = String(profile.userId);
     }
       );
