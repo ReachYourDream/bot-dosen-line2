@@ -40,7 +40,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
-
+console.oldLog = console.log;
 console.log = function(value)
 {
     console.oldLog(value);
@@ -52,7 +52,7 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  console.oldLog = console.log;
+  
 
 
 
