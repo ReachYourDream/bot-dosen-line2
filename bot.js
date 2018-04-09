@@ -47,6 +47,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
+
 // event handler
 function handleEvent(event) { 
   if (event.type !== 'message' || event.message.type !== 'text') {
@@ -70,7 +71,8 @@ function handleEvent(event) {
     const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours()+7;
-    oldLog("log:"+user);
+    do{oldLog("log:"+user);}
+    while(!empty(user));
     var jsonProfile = JSON.parse(user);
     if(date1>=22 && date1<=24){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
