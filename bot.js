@@ -57,8 +57,8 @@ function handleEvent(event) {
   client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(profile.displayName);
-      global.user = String(profile.displayName);
-      global.userId = String(profile.userId);
+      console.log(String(profile.displayName));
+      // global.userId = String(profile.userId);
     }
       );
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
