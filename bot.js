@@ -40,13 +40,9 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
-global.$log = new Array();
-console.oldLog = console.log;
-console.log = function(value)
-{
-    console.oldLog(value);
-    global.$log.push(value);
-};
+
+global.user = '';
+global.userid = '';
 // event handler
 function handleEvent(event) { 
   if (event.type !== 'message' || event.message.type !== 'text') {
@@ -61,6 +57,8 @@ function handleEvent(event) {
   client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(profile.displayName);
+      global.user = profile.displayName;
+      global.userId = profile.userId;
     }
       );
   echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
@@ -85,9 +83,9 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken,echo);
     }
     console.log("abc: " + global.$log);
-    // const log = '&user=' + user + '&userid=' + userId;
-    const urlDosen = url+namaDosen+cek+log;
-    // console.log(urlDosen);
+    const logging = '&user=' + global.user + '&userid=' + global.userId;
+    const urlDosen = url+namaDosen+cek+logging;
+    console.log(urlDosen);
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
     status = 0;
