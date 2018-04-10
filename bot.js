@@ -54,7 +54,7 @@ function handleEvent(event) {
     // ignore non-text-message event
     return Promise.resolve(null);
   }
-  
+  user = '';
   client.getProfile(event.source.userId)
     .then((profile) =>{
       console.log(JSON.stringify(profile));
