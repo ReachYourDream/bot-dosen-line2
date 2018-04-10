@@ -88,7 +88,7 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken,echo);
     }
     var urlDosen = url+namaDosen+cek;
-    delay1(0,urlDosen,event.replyToken);
+    delay1(0,urlDosen,event.replyToken,namaDosen);
     
       // var bx= 0;
       // while(status== 0){
@@ -132,7 +132,7 @@ function delay(detik,replyTokena){
     }
   },1000);
 }
-function delay1(detiks,urlDosen,replyTokena){
+function delay1(detiks,urlDosen,replyTokena,namaDosen){
   setTimeout(function(){
     detiks++;
     oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
@@ -144,11 +144,11 @@ function delay1(detiks,urlDosen,replyTokena){
       oldLog('akhirnya bisa ' + jsonProfile.displayName + ' ' + jsonProfile.displayName);
       var urlDosens = urlDosen + logging;
       oldLog(urlDosens);
-      akses_web(urlDosens,replyTokena);
+      akses_web(urlDosens,replyTokena,namaDosen);
     }
   },1000);
 }
-function akses_web(urlDosens,replyTokena){
+function akses_web(urlDosens,replyTokena,namaDosen){
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
     status = 0;
