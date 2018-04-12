@@ -124,6 +124,10 @@ function delay(detik,replyTokena){
   setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
+    if(detik>20){
+      echo.text = "Maaf server sedang sibuk, mohon mencoba kembali";
+      return client.replyMessage(replyTokena, echo);
+    }
     if(status!=1){
       delay(detik,replyTokena);
     } else{
