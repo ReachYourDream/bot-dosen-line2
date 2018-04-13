@@ -67,7 +67,15 @@ function handleEvent(event) {
 
   status=1;
   const b = String(event.message.text);
-  if(b.toLowerCase().substring(0,5)=='dosen'){
+  if(b.toLowerCase().substring(0,5)=='lapor'){
+    const lapor = '&fungsi=lapor';
+    var split = b.split();
+    var stat = split[1];
+    var namaDosen = b.toLowerCase(substring(b.indexOf(split[2])));
+    echo.text = namaDosen;
+    return client.replyMessage(event.replyToken, echo);
+
+  } else if(b.toLowerCase().substring(0,5)=='dosen'){
     const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours()+7;
