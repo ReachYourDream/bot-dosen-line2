@@ -69,7 +69,7 @@ function handleEvent(event) {
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='lapor'){
     const lapor = '&fungsi=lapor';
-    var split = b.split();
+    var split = b.split(" ");
     var stat = split[1];
     var namaDosen = b.toLowerCase().substring(b.indexOf(split[2]));
     oldLog('stat ' + stat + ' nama' +  b.indexOf(split[2]));
