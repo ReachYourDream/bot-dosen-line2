@@ -71,7 +71,7 @@ function handleEvent(event) {
     const lapor = '&fungsi=lapor';
     var split = b.split();
     var stat = split[1];
-    var namaDosen = b.toLowerCase(substring(b.indexOf(split[2])));
+    var namaDosen = b.toLowerCase().substring(b.indexOf(split[2]));
     echo.text = namaDosen;
     return client.replyMessage(event.replyToken, echo);
 
