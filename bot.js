@@ -82,7 +82,7 @@ function handleEvent(event) {
       // client.pushMessage(event.source.userId, pushi);
       return client.replyMessage(event.replyToken, echo);
     }
-    const namaDosen = b.substring(6);
+    const namaDosen = b.substring(6).toLowerCase();
     if(namaDosen.length<3){
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
