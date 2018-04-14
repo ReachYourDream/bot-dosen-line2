@@ -73,7 +73,18 @@ function handleEvent(event) {
     var stat = split[1];
     var namaDosen = b.toLowerCase().substring(b.indexOf(split[2]));
     oldLog('stat ' + stat + ' nama' +  b.indexOf(split[2]));
-    echo.text = namaDosen;
+    var stat = b.toLowerCase().substring(b.indexOf(split[1]));
+    if(stat != 'hadir' || stat != 'tidak'){
+      echo.text = 'Status yang anda masukkan salah';
+      return client.replyMessage(event.replyToken,echo);
+    }
+    var status = '$status=' + stat;
+    if(namaDosen.length<3){
+      echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
+      return client.replyMessage(event.replyToken,echo);
+    }
+    var urlDosen = url+namaDosen+lapor;
+    delay1(0,urlDosen,event.replyToken,namaDosen);
     return client.replyMessage(event.replyToken, echo);
 
 
