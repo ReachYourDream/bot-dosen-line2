@@ -79,7 +79,7 @@ function handleEvent(event) {
 
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
     const namaDosen = b.substring(6).toLowerCase();
-    
+    cekDosen(event,namaDosen);
     
       // var bx= 0;
       // while(status== 0){
