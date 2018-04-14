@@ -82,7 +82,7 @@ function handleEvent(event) {
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
     }
-    var urlDosen = url+namaDosen+lapor;
+    var urlDosen = url+namaDosen+lapor+status;
     delay1(0,urlDosen,event.replyToken,namaDosen);
     return client.replyMessage(event.replyToken, echo);
 
