@@ -188,12 +188,19 @@ function akses_web(urlDosens,replyTokena,namaDosen){
                 for(x = 0; x<body['jumlah'];x++){
                   str = str + (x+1) + '. ' + body['nama'][x] + ' (' + body['status'][x] + ')\n';
                 }
-                echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str;
+                echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str +'\n\n' 
+                + 'Perlengkap nama dosen untuk mendapatkan detail laporan kehadiran';
+                ;
               } else{
+                if(body['status'][1]=="Belum"){
+                  echo.text= 'Nama Dosen: ' + body['nama'] + '\n' 
+              + 'Status Filkom Apps: ' + body['status'][0] + '\n' 
+              + 'Status Laporan: Belum ada laporan';
+                } else{
               echo.text= 'Nama Dosen: ' + body['nama'] + '\n' 
               + 'Status Filkom Apps: ' + body['status'][0] + '\n' 
               + 'Status Laporan: ' + body['status'][1] + '\n'
-              + 'Laporan terakhir: ' + body['last_edit']; 
+              + 'Laporan terakhir: ' + body['last_edit'];}
             }
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
