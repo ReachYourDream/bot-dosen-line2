@@ -76,28 +76,10 @@ function handleEvent(event) {
     echo.text = namaDosen;
     return client.replyMessage(event.replyToken, echo);
 
+
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
-    const cek = '&fungsi=cek';
-    var date = new Date();
-    var date1 = date.getHours()+7;
-    // do{oldLog("log:"+user);}
-    // while(user.length===0);
-    oldLog('panjang awal: ' + user.length);
-    
-    if(date1>=22 && date1<=23){
-      echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
-      console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
-      // var pushi = { type: 'text', text: 'Sabar mas'};
-      // client.pushMessage(event.source.userId, pushi);
-      return client.replyMessage(event.replyToken, echo);
-    }
     const namaDosen = b.substring(6).toLowerCase();
-    if(namaDosen.length<3){
-      echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
-      return client.replyMessage(event.replyToken,echo);
-    }
-    var urlDosen = url+namaDosen+cek;
-    delay1(0,urlDosen,event.replyToken,namaDosen);
+    
     
       // var bx= 0;
       // while(status== 0){
@@ -119,6 +101,28 @@ function handleEvent(event) {
 
 } 
 
+function cekDosen(event,namaDosen){
+  const cek = '&fungsi=cek';
+    var date = new Date();
+    var date1 = date.getHours()+7;  
+    // do{oldLog("log:"+user);}
+    // while(user.length===0);
+    oldLog('panjang awal: ' + user.length);
+    
+    if(date1==14){
+      echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
+      // console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
+      // var pushi = { type: 'text', text: 'Sabar mas'};
+      // client.pushMessage(event.source.userId, pushi);
+      return client.replyMessage(event.replyToken, echo);
+    }
+    if(namaDosen.length<3){
+      echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
+      return client.replyMessage(event.replyToken,echo);
+    }
+    var urlDosen = url+namaDosen+cek;
+    delay1(0,urlDosen,event.replyToken,namaDosen);
+}
  //  if(event.message.text.substring(0,4)==dosen){
  //     const namaDosen = event.message.substring(5);
  //     const dosen = {type:'text',text: 'bisa dosen'};
@@ -133,7 +137,7 @@ function delay(detik,replyTokena){
   setTimeout(function(){
     detik++;
     console.log('Detik ke: '+ detik);
-    if(detik>20){
+    if(detik>12){
       echo.text = "Maaf server sedang sibuk, mohon mencoba kembali";
       return client.replyMessage(replyTokena, echo);
     }
