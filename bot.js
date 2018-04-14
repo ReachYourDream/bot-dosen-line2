@@ -181,7 +181,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
           res.on('end', ()=>{
             body = JSON.parse(body);
             console.log(body['hasil']);
-            if(body['hasil']=='error jumlah'){
+            if(body['hasil']=='sukses'){
               if(body['jumlah']>1){
                 var str = '';
                 var x;
