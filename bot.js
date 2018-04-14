@@ -73,7 +73,7 @@ function handleEvent(event) {
     var stat = split[1];
     var namaDosen = b.toLowerCase().substring(b.indexOf(split[2]));
     oldLog('stat ' + stat + ' nama' +  b.indexOf(split[2]));
-    if(stat != 'hadir' || stat != 'tidak'){
+    if(stat != 'hadir' && stat != 'tidak'){
       echo.text = 'Status yang anda masukkan salah';
       return client.replyMessage(event.replyToken,echo);
     }
