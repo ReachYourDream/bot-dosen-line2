@@ -74,7 +74,7 @@ function handleEvent(event) {
     var namaDosen = b.toLowerCase().substring(b.indexOf(split[2]));
     oldLog('stat ' + stat + ' nama' +  b.indexOf(split[2]));
     if(stat != 'hadir' && stat != 'tidak'){
-      echo.text = 'Status yang anda masukkan salah';
+      echo.text = 'Status yang anda masukkan salah.\n Hanya bisa memasukan status "hadir" atau "tidak"';
       return client.replyMessage(event.replyToken,echo);
     }
     var status = '&status=' + stat;
@@ -117,7 +117,18 @@ function handleEvent(event) {
       // }
       // status=0;
       // return client.replyMessage(event.replyToken, echo);
-  } else{
+  } else if(b.toLowerCase().substring(0,4)=='help'){
+    echo.text = 'Bot ini memiliki 2 Fitur, cek kehadiran dan lapor kehadiran. \n'
+      + 'Untuk melakukan cek kehadiran ketik: \n'
+      + 'dosen(spasi)nama dosen\n'
+      + 'contoh: dosen budi\n\n'
+      + 'untuk melakukan pelaporan ketik: \n'
+      + 'lapor(spasi)status(hadir/tidak)(spasi)nama dosen\n'
+      + 'contoh: lapor tidak budi \n'
+      + 'atau lapor hadir budi';
+      return client.replyMessage(event.replyToken,echo);
+  }
+  else{
 
   // use reply API
   status=0;
