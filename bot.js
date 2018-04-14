@@ -184,7 +184,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
           res.on('end', ()=>{
             body = JSON.parse(body);
             console.log(body['hasil']);
-            if(body['hasil']=='sukses'){
+            if(body['hasil']=='error jumlah'){
               if(body['jumlah']>1){
                 var str = '';
                 var x;
@@ -192,8 +192,12 @@ function akses_web(urlDosens,replyTokena,namaDosen){
                   str = str + (x+1) + '. ' + body['nama'][x] + ' (' + body['status'][x] + ')\n';
                 }
                 echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str;
-              } else{
-              echo.text= 'Nama Dosen: ' + body['nama'] + '  Status: ' + body['status'];
+              }
+            } else{
+              echo.text= 'Nama Dosen: ' + body['nama'] + '\n' 
+              + 'Status Filkom Apps: ' + body['status'][0] + '\n' 
+              + 'Status Laporan: ' + body['status'][1] + '\n'
+              + 'Laporan terakhir: ' + body['last_edit']; 
               }
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
