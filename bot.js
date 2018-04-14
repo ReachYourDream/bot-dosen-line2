@@ -192,13 +192,13 @@ function akses_web(urlDosens,replyTokena,namaDosen){
                   str = str + (x+1) + '. ' + body['nama'][x] + ' (' + body['status'][x] + ')\n';
                 }
                 echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str;
-              }
-            } else{
+              } else{
               echo.text= 'Nama Dosen: ' + body['nama'] + '\n' 
               + 'Status Filkom Apps: ' + body['status'][0] + '\n' 
               + 'Status Laporan: ' + body['status'][1] + '\n'
               + 'Laporan terakhir: ' + body['last_edit']; 
-            status = 1;}
+            }
+            status = 1;
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
             else{
