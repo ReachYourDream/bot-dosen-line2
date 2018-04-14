@@ -84,7 +84,7 @@ function handleEvent(event) {
     }
     var urlDosen = url+namaDosen+lapor+status;
     delay1(0,urlDosen,event.replyToken,namaDosen);
-    return client.replyMessage(event.replyToken, echo);
+    // return client.replyMessage(event.replyToken, echo);
 
 
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
