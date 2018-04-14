@@ -74,7 +74,7 @@ function handleEvent(event) {
     var namaDosen = b.toLowerCase().substring(b.indexOf(split[2]));
     oldLog('stat ' + stat + ' nama' +  b.indexOf(split[2]));
     if(stat != 'hadir' && stat != 'tidak'){
-      echo.text = 'Status yang anda masukkan salah.\n Hanya bisa memasukan status "hadir" atau "tidak"';
+      echo.text = 'Status yang anda masukkan salah.\nketik "Help" untuk melihat susunan commands';
       return client.replyMessage(event.replyToken,echo);
     }
     var status = '&status=' + stat;
