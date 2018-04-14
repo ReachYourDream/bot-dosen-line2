@@ -77,7 +77,7 @@ function handleEvent(event) {
       echo.text = 'Status yang anda masukkan salah';
       return client.replyMessage(event.replyToken,echo);
     }
-    var status = '$status=' + stat;
+    var status = '&status=' + stat;
     if(namaDosen.length<3){
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
