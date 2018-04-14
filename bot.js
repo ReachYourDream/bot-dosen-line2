@@ -198,7 +198,6 @@ function akses_web(urlDosens,replyTokena,namaDosen){
               + 'Status Filkom Apps: ' + body['status'][0] + '\n' 
               + 'Status Laporan: ' + body['status'][1] + '\n'
               + 'Laporan terakhir: ' + body['last_edit']; 
-              }
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
