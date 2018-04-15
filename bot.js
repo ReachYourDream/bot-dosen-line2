@@ -214,7 +214,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
             body += data;
           }); 
           res.on('end', ()=>{
-            try{body = JSON.parse(body);
+           try{body = JSON.parse(body);
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
               if(body['jumlah']>1){
@@ -246,9 +246,9 @@ function akses_web(urlDosens,replyTokena,namaDosen){
               status = 1;
               // return client.replyMessage(event.replyToken, echo);
               }
-            }
-          } catch(e){
+            } catch(e){
             oldLog(e);}
+            }
           );
         } else{
           echo = { type:'text', text: 'Mohon mengulang kembali' };
