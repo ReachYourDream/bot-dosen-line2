@@ -35,7 +35,7 @@ console.log= function(value){
 var cron = require('cron');
 
 var job1 = new cron.CronJob({
-  cronTime: '* * * * *',
+  cronTime: '* * * * * *',
   onTick: function() {
     console.log('job 1 ticked');
   },
