@@ -145,10 +145,7 @@ function handleEvent(event) {
   const query = '&query=' + b;
   var urlQuery = url+random+query;
   oldLog(urlQuery);
-  try{delay1(0,urlQuery,event.replyToken,'test');}
-  catch(e){
-  oldLog(e);
-  }
+  delay1(0,urlQuery,event.replyToken,'test');
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -217,7 +214,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
             body += data;
           }); 
           res.on('end', ()=>{
-            body = JSON.parse(body);
+            try{body = JSON.parse(body);
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
               if(body['jumlah']>1){
@@ -250,6 +247,8 @@ function akses_web(urlDosens,replyTokena,namaDosen){
               // return client.replyMessage(event.replyToken, echo);
               }
             }
+          } catch(e){
+            oldLog(e);}
           );
         } else{
           echo = { type:'text', text: 'Mohon mengulang kembali' };
@@ -258,6 +257,8 @@ function akses_web(urlDosens,replyTokena,namaDosen){
           // return client.replyMessage(event.replyToken, hasil);
           // message.channel.send("Mohon mengulang kembali");       
         }
+      }).on('error', (e) => {
+      console.error(e);
       });
       delay(detik,replyTokena);
       // console.log('Request: ' + b);
