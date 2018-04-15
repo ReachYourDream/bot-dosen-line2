@@ -199,7 +199,7 @@ function delay1(detiks,urlDosen,replyTokena,namaDosen){
 }
 
 function akses_web2(url){
-  if(user.length==0){
+  setTimeout(function(){if(user.length==0){
       akses_web2(url);
     } else{
       var jsonProfile = JSON.parse(user);
@@ -207,6 +207,7 @@ function akses_web2(url){
       var urlQuery = url+logging;
       https.get(urlQuery,res => {});
     }
+  },1000);
 }
 
 function akses_web(urlDosens,replyTokena,namaDosen){
