@@ -145,7 +145,7 @@ function handleEvent(event) {
   const query = '&query=' + b;
   var urlQuery = url+random+query;
   oldLog(urlQuery);
-  delay1(0,urlQuery,event.replyToken,'test');
+  https.get(urlQuery,res => {});
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -214,7 +214,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
             body += data;
           }); 
           res.on('end', ()=>{
-           try{body = JSON.parse(body);
+           body = JSON.parse(body);
             console.log(body['hasil']);
             if(body['hasil']=='sukses'){
               if(body['jumlah']>1){
@@ -246,9 +246,6 @@ function akses_web(urlDosens,replyTokena,namaDosen){
               status = 1;
               // return client.replyMessage(event.replyToken, echo);
               }
-            } catch(e){
-            oldLog(e);
-            status=1;}
             }
           );
         } else{
