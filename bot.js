@@ -143,9 +143,12 @@ function handleEvent(event) {
   status=0;
   const random = '&fungsi=query';
   const query = '&query=' + b;
-  var urlQuery = url+random+b;
+  var urlQuery = url+random+query;
   oldLog(urlQuery);
-  delay1(0,urlQuery,event.replyToken,'test');
+  try{delay1(0,urlQuery,event.replyToken,'test');}
+  catch(e){
+  oldLog(e);
+  }
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
