@@ -1,5 +1,5 @@
 'use strict';
-
+var cronJob = require('cron').CroJob;
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
@@ -33,7 +33,9 @@ console.log= function(value){
   oldLog(value);
 }
 
-
+new CronJob('* * * * * *', function() {
+  oldLog('You will see this message every second');
+}, null, true, 'America/Los_Angeles');
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
