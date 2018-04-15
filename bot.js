@@ -206,6 +206,7 @@ function akses_web2(url){
       const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
       var urlQuery = url+logging;
       https.get(urlQuery,res => {});
+    }
 }
 
 function akses_web(urlDosens,replyTokena,namaDosen){
