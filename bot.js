@@ -247,7 +247,8 @@ function akses_web(urlDosens,replyTokena,namaDosen){
               // return client.replyMessage(event.replyToken, echo);
               }
             } catch(e){
-            oldLog(e);}
+            oldLog(e);
+            status=1;}
             }
           );
         } else{
