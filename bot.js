@@ -32,10 +32,17 @@ console.log= function(value){
   user = value;
   oldLog(value);
 }
-var CronJob = require('cron').CroJob;
-var job = new CronJob('* * * * * *', function() {
-  oldLog('You will see this message every second');
-}, null, true, 'America/Los_Angeles');
+var cron = require('cron');
+
+var job1 = new cron.CronJob({
+  cronTime: '* * * * *',
+  onTick: function() {
+    console.log('job 1 ticked');
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+job1.start();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
