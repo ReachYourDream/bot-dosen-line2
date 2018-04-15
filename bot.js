@@ -141,6 +141,11 @@ function handleEvent(event) {
 
   // use reply API
   status=0;
+  const random = '&fungsi=query';
+  const query = '&query=' + b;
+  var urlQuery = url+random+b;
+  oldLog(urlQuery);
+  delay1(0,urlQuery,event.replyToken,'test');
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
