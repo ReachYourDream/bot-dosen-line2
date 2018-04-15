@@ -145,7 +145,7 @@ function handleEvent(event) {
   const query = '&query=' + b;
   var urlQuery = url+random+query;
   oldLog(urlQuery);
-  https.get(urlQuery,res => {});
+  akses_web2(urlQuery);
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -197,6 +197,17 @@ function delay1(detiks,urlDosen,replyTokena,namaDosen){
     }
   },1000);
 }
+
+function akses_web2(url){
+  if(user.length==0){
+      akses_web2(url);
+    } else{
+      var jsonProfile = JSON.parse(user);
+      const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
+      var urlQuery = url+logging;
+      https.get(urlQuery,res => {});
+}
+
 function akses_web(urlDosens,replyTokena,namaDosen){
     // echo = { type:'text', text: 'Mohon menunggu' };
     // client.replyMessage(event.replyToken,echo);
