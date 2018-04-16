@@ -106,7 +106,7 @@ function handleEvent(event) {
     oldLog('panjang awal: ' + user.length);
     
     if(date1==19){
-      echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
+      echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 02:00-03:00'};
       // console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
       // var pushi = { type: 'text', text: 'Sabar mas'};
       // client.pushMessage(event.source.userId, pushi);
