@@ -100,12 +100,12 @@ function handleEvent(event) {
     const namaDosen = b.substring(6).toLowerCase();
     const cek = '&fungsi=cek';
     var date = new Date();
-    var date1 = date.getHours()+7;  
+    var date1 = date.getHours();  
     // do{oldLog("log:"+user);}
     // while(user.length===0);
     oldLog('panjang awal: ' + user.length);
     
-    if(date1==14){
+    if(date1==19){
       echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 22:00-24:00'};
       // console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
       // var pushi = { type: 'text', text: 'Sabar mas'};
