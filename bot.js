@@ -176,7 +176,7 @@ function akses_web3(){
             body += data;
           }); 
           res.on('end', ()=>{
-            var nama = 'Nanang'
+            var nama = 'Nanang';
             var pembuka = '<span class="text text-default" style="color:#444">';
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-50)+nama.length;
