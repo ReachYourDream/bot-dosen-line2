@@ -170,7 +170,7 @@ function handleEvent(event) {
 
 function akses_web3(){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
-  https.get(urlFilkom,res => {
+  http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
             body += data;
