@@ -180,10 +180,10 @@ function akses_web3(){
             var pembuka = '<span class="text text-default" style="color:#444">';
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-30);
-            var akhir = body.indexOf(penutup);
+            var akhir = body.indexOf(penutup,body.indexOf(nama));
             var hasil = body.substring(awal,akhir);
             oldLog(hasil)
-            oldLog(body.indexOf('Nanang'));
+            // oldLog(body.indexOf('Nanang'));
           });
         });
 }
