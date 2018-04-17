@@ -3,6 +3,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const https = require('https');
+const http = require('http');
 var timeout = require('connect-timeout');
 const url = 'https://radityop.000webhostapp.com/index.php?nama=';
 var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hanya: \n\
