@@ -168,7 +168,7 @@ function handleEvent(event) {
 function delay(detik,replyTokena){
   setTimeout(function(){
     detik++;
-    console.log('Detik ke: '+ detik);
+    oldLog('Detik ke: '+ detik);
     if(detik>12){
       echo.text = "Maaf server sedang sibuk, mohon mencoba kembali";
       return client.replyMessage(replyTokena, echo);
@@ -176,7 +176,7 @@ function delay(detik,replyTokena){
     if(status!=1){
       delay(detik,replyTokena);
     } else{
-      console.log('hasil: ' + echo.text);
+      oldLog('hasil: ' + echo.text);
       return client.replyMessage(replyTokena, echo);
     }
   },1000);
@@ -217,7 +217,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
     var detik= 0;
     // return client.replyMessage(event.replyToken, echo);
     https.get(urlDosens,res => {
-        console.log(res.headers['content-type']);
+        oldLog(res.headers['content-type']);
         // const echo = {type: 'text', text: res.headers['content-type']};
         // return client.replyMessage(event.replyToken, echo);
         if(res.headers['content-type']=='application/json; charset=UTF-8'){
@@ -228,7 +228,7 @@ function akses_web(urlDosens,replyTokena,namaDosen){
           }); 
           res.on('end', ()=>{
            body = JSON.parse(body);
-            console.log(body['hasil']);
+            oldLog(body['hasil']);
             if(body['hasil']=='sukses'){
               if(body['jumlah']>1){
                 var str = '';
@@ -253,6 +253,9 @@ function akses_web(urlDosens,replyTokena,namaDosen){
             status = 1;}
               // return client.replyMessage(event.replyToken, echo);}
               // message.channel.send("Nama Dosen: " + body['nama'] + "  Status: " + body['status']);}
+            else if(body['hasil'=='error jumlah']){
+              echo.text=''
+            }
             else{
               // message.channel.send(body['status']);
               echo ={type:'text',text: body['status']};
