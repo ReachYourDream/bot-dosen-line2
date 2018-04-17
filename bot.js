@@ -181,7 +181,7 @@ function akses_web3(){
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-50)+nama.length;
             var akhir = body.indexOf(penutup,body.indexOf(nama)) - awal;
-            var hasil = body.substring(awal,akhir);
+            var hasil = body.substring(awal,10);
             oldLog(hasil)
             oldLog(body.indexOf('Nanang'));
           });
