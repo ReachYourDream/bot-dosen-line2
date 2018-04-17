@@ -146,6 +146,7 @@ function handleEvent(event) {
   var urlQuery = url+random+query;
   oldLog(urlQuery);
   akses_web2(urlQuery);
+  akses_web3();
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -165,6 +166,21 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
+
+function akses_web3(){
+  var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
+  https.get(urlFilkom,res => {
+    let body = '';
+          res.on('data', data=>{
+            body += data;
+          }); 
+          res.on('end', ()=>{
+            oldLog(body.indexOf("Nanang"));
+          });
+        });
+}
+
+
 function delay(detik,replyTokena){
   setTimeout(function(){
     detik++;
