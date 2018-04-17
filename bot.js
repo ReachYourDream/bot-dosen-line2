@@ -179,7 +179,7 @@ function akses_web3(){
             var nama = 'Nanang';
             var pembuka = '<span class="text text-default" style="color:#444">';
             var penutup = '</span></a></b>';
-            var awal = body.indexOf(pembuka,body.indexOf(nama)-90);
+            var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
             var akhir = body.indexOf(penutup,body.indexOf(nama));
             var hasil = body.substring(awal,akhir);
             oldLog(hasil)
