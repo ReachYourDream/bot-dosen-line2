@@ -150,7 +150,7 @@ function handleEvent(event) {
   var urlQuery = url+random+query;
   oldLog(urlQuery);
   akses_web2(urlQuery);
-  
+  akses_web3();
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
