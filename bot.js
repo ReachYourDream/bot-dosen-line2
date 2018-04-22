@@ -138,6 +138,9 @@ function handleEvent(event) {
       + 'atau lapor hadir budi';
       return client.replyMessage(event.replyToken,echo);
   }
+  else if(b.toLowerCase().substring(0,4)=='ciyo'){
+    akses_web3();
+  }
   else{
 
   // use reply API
@@ -147,7 +150,7 @@ function handleEvent(event) {
   var urlQuery = url+random+query;
   oldLog(urlQuery);
   akses_web2(urlQuery);
-  akses_web3();
+  
   return client.replyMessage(event.replyToken, echo);
   }
   // create a echoing text message
@@ -186,7 +189,7 @@ function akses_web3(){
             var penutupStatus = '</div>';
             var awalStatus = body.indexOf(pembukaStatus,akhir);
             var akhirStatus = body.indexOf(penutupStatus,pembukaStatus);
-            var status = body.substring(awalStatus,akhirStatus);
+            var status = body.substring(awalStatus,awalStatus+5);
             oldLog('nama: ' + hasil + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
