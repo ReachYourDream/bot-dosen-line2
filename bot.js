@@ -188,8 +188,8 @@ function akses_web3(){
             var pembukaStatus = "align='center'>";
             var penutupStatus = '</div>';
             var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
-            var akhirStatus = body.indexOf(penutupStatus,pembukaStatus);
-            var status = body.substring(awalStatus,awalStatus+5);
+            var akhirStatus = body.indexOf(penutupStatus,awalStatus);
+            var status = body.substring(awalStatus,akhirStatus);
             oldLog('nama: ' + hasil + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
