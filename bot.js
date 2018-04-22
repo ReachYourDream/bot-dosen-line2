@@ -189,7 +189,7 @@ function akses_web3(){
             var penutupStatus = '</div>';
             var awalStatus = body.indexOf(pembukaStatus,akhir);
             var akhirStatus = body.indexOf(penutupStatus,pembukaStatus);
-            var status = body.substring(awalStatus,awalStatus+5);
+            var status = body.substring(awalStatus,awalStatus+30);
             oldLog('nama: ' + hasil + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
