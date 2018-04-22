@@ -179,7 +179,7 @@ function akses_web3(){
             body += data;
           }); 
           res.on('end', ()=>{
-            var nama = 'Agus Sulaiman';
+            var nama = 'Agus Sulai';
             var pembuka = '<span class="text text-default" style="color:#444">';
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
