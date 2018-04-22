@@ -185,7 +185,7 @@ function akses_web3(){
             var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
             var akhir = body.indexOf(penutup,body.indexOf(nama));
             var hasil = body.substring(awal,akhir);
-            var pembukaStatus = "<div class='label label-success' align='center'>";
+            var pembukaStatus = "align='center'>";
             var penutupStatus = '</div>';
             var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
             var akhirStatus = body.indexOf(penutupStatus,pembukaStatus);
