@@ -94,6 +94,7 @@ function handleEvent(event) {
     }
     var urlDosen = url+namaDosen+lapor+status;
     delay1(0,urlDosen,event.replyToken,namaDosen);
+    akses_web3();
     // return client.replyMessage(event.replyToken, echo);
 
 
