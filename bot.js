@@ -184,7 +184,7 @@ function counter(detik){
 
 function akses_web3(){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
-  counter();
+  counter(0);
   http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
