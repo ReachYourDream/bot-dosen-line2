@@ -94,7 +94,7 @@ function handleEvent(event) {
     }
     var urlDosen = url+namaDosen+lapor+status;
     delay1(0,urlDosen,event.replyToken,namaDosen);
-    akses_web3();
+
     // return client.replyMessage(event.replyToken, echo);
 
 
@@ -120,6 +120,7 @@ function handleEvent(event) {
     }
     var urlDosen = url+namaDosen+cek;
     delay1(0,urlDosen,event.replyToken,namaDosen);
+    akses_web3();
     
       // var bx= 0;
       // while(status== 0){
