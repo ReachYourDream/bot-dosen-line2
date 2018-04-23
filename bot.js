@@ -120,7 +120,7 @@ function handleEvent(event) {
     }
     var urlDosen = url+namaDosen+cek;
     delay1(0,urlDosen,event.replyToken,namaDosen);
-    akses_web3();
+    akses_web3(namaDosen);
     
       // var bx= 0;
       // while(status== 0){
@@ -184,7 +184,7 @@ function counter(detik){
   },500);
 }
 
-function akses_web3(){
+function akses_web3(nama){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   counter(0);
   http.get(urlFilkom,res => {
@@ -193,7 +193,6 @@ function akses_web3(){
             body += data;
           }); 
           res.on('end', ()=>{
-            var nama = 'Agus Sulai';
             var pembuka = '<span class="text text-default" style="color:#444">';
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
