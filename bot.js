@@ -170,9 +170,21 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
+function counter(detik){
+  setTimeout(function(){
+    if(detik<10){
+      detik +=0.5;
+    oldLog("kounter: " detik);
+    counter(detik);
+      } else{
+        return;
+      }
+  },500);
+}
 
 function akses_web3(){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
+  counter();
   http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
