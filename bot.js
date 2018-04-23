@@ -184,10 +184,10 @@ function counter(detik){
   },500);
 }
 
-function akses_web3(nama){
+function akses_web3(name){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   counter(0);
-  var name = nama.charAt(0).toUpperCase() + nama.slice(1);
+  var nama = name.charAt(0).toUpperCase() + name.slice(1);
   http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
