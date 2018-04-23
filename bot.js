@@ -174,7 +174,7 @@ function handleEvent(event) {
  // return client.replyMessage(event.replyToken,dosen);
 function counter(detik){
   setTimeout(function(){
-    if(detik<10){
+    if(detik<5){
       detik +=0.5;
     oldLog("kounter: " + detik);
     counter(detik);
@@ -187,6 +187,7 @@ function counter(detik){
 function akses_web3(nama){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   counter(0);
+  var name = nama.charAt(0).toUpperCase() + nama.slice(1);
   http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
