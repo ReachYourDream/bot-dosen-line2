@@ -174,7 +174,7 @@ function counter(detik){
   setTimeout(function(){
     if(detik<10){
       detik +=0.5;
-    oldLog("kounter: " detik);
+    oldLog("kounter: " + detik);
     counter(detik);
       } else{
         return;
