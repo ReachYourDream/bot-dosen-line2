@@ -10,8 +10,8 @@ var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hany
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
 var status=0;
-const { Klien } =require('pg');
-const klien = new Klien({
+const pg =require('pg');
+const klien = new pg({
   connectionString: process.env.HEROKU_POSTGRESQL_OLIVE_URL,
   ssl: true,
 });
