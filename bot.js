@@ -466,8 +466,8 @@ const pool = new Pool({
 app.get('/db', async (req, res) => {
   try {
     const abcd = await pool.connect()
-    const result = await abcd.query("SELECT sp_cek_dosen('123','coba','dosen himawat','Himawat Aryadita, S.T, M.Sc');");
-    oldLog(JSON.parse(result.rows[0]));
+    const result = await abcd.query("SELECT sp_cek_dosen('123','coba','dosen himawat','Himawat Aryadita, S.T, M.Sc') as message;");
+    oldLog(result.rows[0]);
     abcd.release();
   } catch (err) {
     console.error(err);
