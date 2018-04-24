@@ -10,22 +10,6 @@ var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hany
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
 var status=0;
-const pg =require('pg');
-pg.connect(process.env.HEROKU_POSTGRESQL_OLIVE_URL, function(err, client, done) {
-   console.log(err+"!!!!!!!!!!!!!!!");
-  client.query('SELECT * FROM your_table', function(err, result) {
-    done();
-    if(err) return console.error(err);
-    console.log(result.rows);
-  });
-});
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    oldLog("Koneksi: " + JSON.stringify(row));
-  }
-  client.end();
-});
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
@@ -469,3 +453,13 @@ app.listen(port, () => {
 // // });
 // // bot.on('message',function(message){
 // //   //Bot harus tau kapan mengeksekusi command
+var pg = require('pg');
+
+pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+   console.log(err+"!!!!!!!!!!!!!!!");
+  client.query('SELECT * FROM your_table', function(err, result) {
+    done();
+    if(err) return console.error(err);
+    console.log(result.rows);
+  });
+});
