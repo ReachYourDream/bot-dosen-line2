@@ -10,6 +10,19 @@ var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hany
   dosen(spasi)nama dosen\n\
   Contoh: Dosen Rudi' };
 var status=0;
+const { Klien } =require('pg');
+const klien = new Klien({
+  connectionString: process.env.HEROKU_POSTGRESQL_OLIVE_URL,
+  ssl: true,
+});
+klien.connect();
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    oldLog(JSON.stringify(row));
+  }
+  client.end();
+});
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
