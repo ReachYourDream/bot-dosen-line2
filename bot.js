@@ -28,7 +28,11 @@ app.use(haltOnTimedout);
 function haltOnTimedout(req, res, next){
   if (!req.timedout) next();
 }
-
+var oldLog = console.log;
+console.log= function(value){
+  user = value;
+  oldLog(value);
+}
 var cron = require('cron');
 
 // var job1 = new cron.CronJob({
@@ -461,10 +465,9 @@ const pool = new Pool({
 
 app.get('/db', async (req, res) => {
   try {
-    const abc = await pool.connect()
-    const result = await abc.query('SELECT * FROM test_table');
-    oldLog(result);
-    client.release();
+    const abcd = await pool.connect()
+    const result = await abcd.query('SELECT * FROM test_table');
+    abcd.release();
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
