@@ -11,12 +11,12 @@ var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hany
   Contoh: Dosen Rudi' };
 var status=0;
 const pg =require('pg');
-pg.connect(process.env.HEROKU_POSTGRESQL_OLIVE_URL, fucntion(err,client,done){
-  oldLog(err+"!!!!!!!!!!!!!!!");
+pg.connect(process.env.HEROKU_POSTGRESQL_OLIVE_URL, function(err, client, done) {
+   console.log(err+"!!!!!!!!!!!!!!!");
   client.query('SELECT * FROM your_table', function(err, result) {
     done();
     if(err) return console.error(err);
-    oldlog(result.rows);
+    console.log(result.rows);
   });
 });
 client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
