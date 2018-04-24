@@ -11,11 +11,7 @@ var echo = { type: 'text', text: 'Untuk sementara fitur yang bisa digunakan hany
   Contoh: Dosen Rudi' };
 var status=0;
 const pg =require('pg');
-const klien = new pg({
-  connectionString: process.env.HEROKU_POSTGRESQL_OLIVE_URL,
-  ssl: true,
-});
-klien.connect(process.env.HEROKU_POSTGRESQL_OLIVE_URL, fucntion(err,client,done){
+pg.connect(process.env.HEROKU_POSTGRESQL_OLIVE_URL, fucntion(err,client,done){
   oldLog(err+"!!!!!!!!!!!!!!!");
   client.query('SELECT * FROM your_table', function(err, result) {
     done();
