@@ -453,13 +453,20 @@ app.listen(port, () => {
 // // });
 // // bot.on('message',function(message){
 // //   //Bot harus tau kapan mengeksekusi command
-var pg = require('pg');
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
-pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-   console.log(err+"!!!!!!!!!!!!!!!");
-  client.query('SELECT * FROM your_table', function(err, result) {
-    done();
-    if(err) return console.error(err);
-    console.log(result.rows);
-  });
+app.get('/db', async (req, res) => {
+  try {
+    const abc = await pool.connect()
+    const result = await abc.query('SELECT * FROM test_table');
+    oldLog(result);
+    client.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
 });
