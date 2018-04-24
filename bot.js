@@ -19,7 +19,7 @@ klien.connect();
 client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
-    oldLog(JSON.stringify(row));
+    oldLog("Koneksi: " + JSON.stringify(row));
   }
   client.end();
 });
