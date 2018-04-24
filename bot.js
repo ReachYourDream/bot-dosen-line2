@@ -465,10 +465,14 @@ const pool = new Pool({
 
 app.get('/db', async (req, res) => {
   try {
+    var results = [];
     const abcd = await pool.connect()
     const result = await abcd.query("SELECT sp_cek_dosen('123','coba','dosen himawat','Himawat Aryadita, S.T, M.Sc');");
-    oldLog(result);
+    result.on('row',(row)=>{
+      results.push(row);
+    })
     abcd.release();
+    oldLog(results);
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
