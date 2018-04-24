@@ -472,7 +472,7 @@ app.get('/db', async (req, res) => {
       results.push(row);
     })
     abcd.release();
-    oldLog(results);
+    oldLog(JSON.parse(results));
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
