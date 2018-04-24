@@ -15,7 +15,14 @@ const klien = new pg({
   connectionString: process.env.HEROKU_POSTGRESQL_OLIVE_URL,
   ssl: true,
 });
-klien.connect();
+klien.connect(process.env.HEROKU_POSTGRESQL_OLIVE_URL, fucntion(err,client,done){
+  oldLog(err+"!!!!!!!!!!!!!!!");
+  client.query('SELECT * FROM your_table', function(err, result) {
+    done();
+    if(err) return console.error(err);
+    oldlog(result.rows);
+  });
+});
 client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
@@ -41,11 +48,7 @@ app.use(haltOnTimedout);
 function haltOnTimedout(req, res, next){
   if (!req.timedout) next();
 }
-var oldLog = console.log;
-console.log= function(value){
-  user = value;
-  oldLog(value);
-}
+
 var cron = require('cron');
 
 // var job1 = new cron.CronJob({
