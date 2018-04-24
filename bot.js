@@ -467,6 +467,7 @@ app.get('/db', async (req, res) => {
   try {
     const abcd = await pool.connect()
     const result = await abcd.query('SELECT * FROM test_table');
+    oldLog(result);
     abcd.release();
   } catch (err) {
     console.error(err);
