@@ -113,7 +113,7 @@ function handleEvent(event) {
         return console.error('Error executing query', err.stack);
       }
       oldLog("test" + result.rows[0].message['nama_dosen']);
-    })
+    });
 
     oldLog('test'+  result.rows[0].message['nama_dosen']);
     // var hasil = JSON.parse(result.rows[0].message);
