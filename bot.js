@@ -23,7 +23,8 @@ const pool = new Pool({
 // create LINE SDK client
 const client = new line.Client(config);
 var user = '';
-var namaLengkap = '';
+var namaLengkap = [];
+var stats = [];
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -64,7 +65,9 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 
 // event handler
-function handleEvent(event) { 
+function handleEvent(event) {
+  namaLengkap = [];
+  stats = []; 
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
     return Promise.resolve(null);
@@ -98,14 +101,14 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken,echo);
     }
     var urlDosen = url+namaDosen+lapor+status;
-    delay1(0,urlDosen,event.replyToken,namaDosen);
+    delay1(0,namaDosen,b,event.replyToken);
 
     // return client.replyMessage(event.replyToken, echo);
 
 
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
     const namaDosen = b.substring(6).toLowerCase();
-    const cek = '&fungsi=cek';
+    // const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours();  
     // do{oldLog("log:"+user);}
@@ -123,9 +126,9 @@ function handleEvent(event) {
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
     }
-    var urlDosen = url+namaDosen+cek;
+    // var urlDosen = url+namaDosen+cek;
     delay1(0,urlDosen,event.replyToken,namaDosen);
-    akses_web3(namaDosen,b);
+    // aksesWebStatus(namaDosen,b);
     
       // var bx= 0;
       // while(status== 0){
@@ -178,7 +181,7 @@ function handleEvent(event) {
  // }
  // return client.replyMessage(event.replyToken,dosen);
 
-function akses_web3(name,b){
+function aksesWebStatus(id,username,name,b,replyTokena){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   var nama = ucwords(name);
   http.get(urlFilkom, res => {
@@ -187,50 +190,88 @@ function akses_web3(name,b){
             body += data;
           }); 
           res.on('end', ()=>{
-            var pembuka = '<span class="text text-default" style="color:#444">';
-            var penutup = '</span></a></b>';
-            var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
-            var akhir = body.indexOf(penutup,body.indexOf(nama));
-            namaLengkap = body.substring(awal,akhir);
-            var pembukaStatus = "align='center'>";
-            var penutupStatus = '</div>';
-            var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
-            var akhirStatus = body.indexOf(penutupStatus,awalStatus);
-            var status = body.substring(awalStatus,akhirStatus);
+            var iterasi = 0;
+            var indeks = 0;
+            do{
+            indeks = body.indexOf(nama,indeks);
+            var awal_staff = body.indexOf('<div class="tab-pane fade" id="tstaff">');
+            if(indeks>0 && indeks<awal_staff){
+              iterasi++;
+              var pembuka = '<span class="text text-default" style="color:#444">';
+              var penutup = '</span></a></b>';
+              var awal = body.indexOf(pembuka,indeks-90)+pembuka.length;
+              var akhir = body.indexOf(penutup,indeks);
+              namaLengkap.push(body.substring(awal,akhir));
+              var pembukaStatus = "align='center'>";
+              var penutupStatus = '</div>';
+              var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
+              var akhirStatus = body.indexOf(penutupStatus,awalStatus);
+              stats.push(body.substring(awalStatus,akhirStatus));
+            } else{
+              echo.text = "Nama Dosen yang anda masukkan salah";
+              return client.replyMessage(replyTokena, echo);
+            }
+            // var pencarian = indeks;
+            indeks++;
+            }
+            while(indeks != 0 || indeks <awal_staff);
             oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
         }); 
-  delay4(0,b);
+  delayStatus(0,id,username,b,iterasi,replyTokena);
 }
-function delay4(detik,b){
+function delayStatus(detik,id,username,b,jumlah,replyTokena){
    setTimeout(function(){
-    if(namaLengkap == ''){
-      oldLog(detik+=0.5);
-      delay4(detik,b);
-    } else{
-    try {
-    var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaLengkap + "') as message;"; 
-    // const abcd =  pool.connect()
-    // const result =  abcd.query(query);
-    pool.query(query,(err,result)=>{
-      if(err){
-        return console.error('Error executing query', err.stack);
+    if(namaLengkap.length == 0){
+      detik+=0.5;
+      oldLog("delayStatus: " + detik);
+      delayStatus(detik,id,username,b,replyTokena);
+    } else if(namaLengkap.length == 1){
+      try {
+        var query = "SELECT sp_cek_dosen('"+ id + "','"+username +"','" 
+        + b + "','" + namaLengkap[0] + "') as message;"; 
+        pool.query(query,(err,result)=>{
+          if(err){
+            return console.error('Error executing query', err.stack);
+          }
+          echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
+              + 'Status Filkom Apps: ' + stats[0] + '\n' 
+              + 'Status Laporan: ' + result.rows[0].message['status'] + '\n'
+              + 'Laporan terakhir: ' + result.rows[0].message['last_edit_time'];
+          oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
+            + result.rows[0].message['status'] + ". Last Edit: " 
+            + result.rows[0].message['last_edit_time']);
+        });
+      } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
       }
-      oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
-        + result.rows[0].message['status'] + ". Last Edit: " 
-        + result.rows[0].message['last_edit_time']);
-    });
-
-    // oldLog('test'+  result.rows[0].message['nama_dosen']);
-    // var hasil = JSON.parse(result.rows[0].message);
-    // oldLog(hasil['nama_dosen']);
-    // abcd.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-  }
+      return client.replyMessage(replyTokena,echo);
+    }
+    else{
+      var str = '';
+      var x;
+      for(x = 0; x<jumlah;x++){
+        str = str + (x+1) + '. ' + namaLengkap[x] + ' (' + namaLengkap[x] + ')\n';
+      }
+      echo.text = 'Terdapat ' + jumlah + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str +'\n\n' 
+      + 'Perlengkap nama dosen untuk mendapatkan detail laporan kehadiran';
+      try {
+        var query = "SELECT sp_cek_dosen('"+ id + "','"+username +"','" 
+        + b + "') as message;"; 
+        pool.query(query,(err,result)=>{
+          if(err){
+            return console.error('Error executing query', err.stack);
+          }
+          oldLog("query: " + b);
+        });
+      } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+      }
+      return client.replyMessage(replyTokena,echo);
+    }
   },500);
  }
 
@@ -276,19 +317,20 @@ function delay(detik,replyTokena){
     }
   },1000);
 }
-function delay1(detiks,urlDosen,replyTokena,namaDosen){
+function delay1(detiks,namaDosen,b,replyTokena){
   setTimeout(function(){
     detiks+=0.5;
     oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
     if(user.length==0){
-      delay(detiks,urlDosen);
+      delay(detiks,namaDosen,b,replyTokena);
     } else{
       var jsonProfile = JSON.parse(user);
       const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
       oldLog('akhirnya bisa ' + jsonProfile.displayName + ' ' + jsonProfile.displayName);
-      var urlDosens = urlDosen + logging;
-      oldLog(urlDosens);
-      akses_web(urlDosens,replyTokena,namaDosen);
+      // var urlDosens = urlDosen + logging;
+      // oldLog(urlDosens);
+      aksesWebStatus(jsonProfile.userId,jsonProfile.displayName,namaDosen,b,replyTokena);
+      // akses_web(urlDosens,replyTokena,namaDosen);
     }
   },500);
 }
@@ -333,7 +375,6 @@ function akses_web(urlDosens,replyTokena,namaDosen){
                 }
                 echo.text = 'Terdapat ' + body['jumlah'] + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str +'\n\n' 
                 + 'Perlengkap nama dosen untuk mendapatkan detail laporan kehadiran';
-                ;
               } else{
                 if(body['status'][1]=="Belum"){
                   echo.text= 'Nama Dosen: ' + body['nama'] + '\n' 
