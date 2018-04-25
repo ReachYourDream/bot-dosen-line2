@@ -242,9 +242,9 @@ function aksesWebStatus(id,username,name,b,replyTokena){
             console.error(e);
           });
         });
-  delayStatus(0,id,username,b,iterasi,replyTokena);
+  delayStatus(0,id,username,b,iterasi,name,replyTokena);
 }
-function delayStatus(detik,id,username,b,jumlah,replyTokena){
+function delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena){
    setTimeout(function(){
     if(namaLengkap.length == 0){
       detik+=0.5;
@@ -273,7 +273,7 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
         res.send("Error " + err);
       }
       oldLog('sampai sini kok');
-      penampilan(0);
+      penampilan(0,replyTokena);
     }
     else{
       var str = '';
@@ -301,10 +301,10 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
   },500);
  }
 
-function penampilan(detiks){
+function penampilan(detiks,replyTokena){
   setTimeout(function(){
     detiks+=0.2;
-    oldLog(detiks);
+    oldLog(detiks,replyTokena);
     if(detiks>10){
       return;
     }
@@ -316,6 +316,7 @@ function penampilan(detiks){
               + 'Status Filkom Apps: ' + stats[0] + '\n' 
               + 'Status Laporan: ' + hasil['status'] + '\n'
               + 'Laporan terakhir: ' + hasil['last_edit_time'];
+      return client.replyMessage(replyTokena,echo);
     }
   },200);
 }
