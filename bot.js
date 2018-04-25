@@ -25,6 +25,7 @@ const client = new line.Client(config);
 var user = '';
 var namaLengkap = [];
 var stats = [];
+var hasil;
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -257,42 +258,22 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
       var a = '';
       try {
         var query = "SELECT sp_cek_dosen('"+ id + "','"+username +"','" 
-        + b + "','" + namaLengkap[0] + "') as message;"; 
-        pool.connect((err, client, release) => {
-  if (err) {
-    return console.error('Error acquiring client', err.stack);
-  }
-  client.query(query, (err, result) => {
-    release()
-    if (err) {
-      return console.error('Error executing query', err.stack);
-    }
-    console.log(result.rows);
-  })
-});
-      //   pool.query(query,(err,result)=>{
-      //     if(err){
-      //       return console.error('Error executing query', err.stack);
-      //     }
-      //     oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
-      //       + result.rows[0].message['status'] + ". Last Edit: " 
-      //       + result.rows[0].message['last_edit_time']);
-      //     echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
-      //         + 'Status Filkom Apps: ' + stats[0] + '\n' 
-      //         + 'Status Laporan: ' + result.rows[0].message['status'] + '\n'
-      //         + 'Laporan terakhir: ' + result.rows[0].message['last_edit_time'];
-          
-      //     a += result.rows[0].message['last_edit_time'];
-      //   });
+        + b + "','" + namaLengkap[0] + "') as message;";   
+        pool.query(query,(err,result)=>{
+          if(err){
+            return console.error('Error executing query', err.stack);
+          }
+          oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
+            + result.rows[0].message['status'] + ". Last Edit: " 
+            + result.rows[0].message['last_edit_time']);
+          hasil = result.rows[0].message;
+        });
       } catch (err) {
         console.error("Error " + err);
         res.send("Error " + err);
       }
       oldLog('sampai sini kok');
-      if(a!= ''){
-      oldLog('sampai sini juga kok');
-      return client.replyMessage(replyTokena,echo);
-      }
+      penampilan(0);
     }
     else{
       var str = '';
@@ -320,7 +301,22 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
   },500);
  }
 
-
+function penampilan(detiks){
+  setTimeout(function(){
+    detiks+=0.2;
+    if(detiks>10){
+      return;
+    }
+    if(hasil['last_edit_time']===0){
+      penampilan(detiks);
+    } else{
+      echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
+              + 'Status Filkom Apps: ' + stats[0] + '\n' 
+              + 'Status Laporan: ' + hasil['status'] + '\n'
+              + 'Laporan terakhir: ' + hasil['last_edit_time'];
+    }
+  },200);
+}
  
  function ucwords (str) {
   //  discuss at: http://locutus.io/php/ucwords/
