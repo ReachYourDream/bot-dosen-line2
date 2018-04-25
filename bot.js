@@ -304,12 +304,14 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
 function penampilan(detiks){
   setTimeout(function(){
     detiks+=0.2;
+    oldLog(detiks);
     if(detiks>10){
       return;
     }
-    if(hasil['last_edit_time']===0){
-      penampilan(detiks);
+    if(hasil['last_edit_time']===null){
+      penampilan(detiks); 
     } else{
+      oldLog(hasil['status']);
       echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
               + 'Status Filkom Apps: ' + stats[0] + '\n' 
               + 'Status Laporan: ' + hasil['status'] + '\n'
