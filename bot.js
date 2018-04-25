@@ -201,11 +201,11 @@ function akses_web3(name,b){
             // oldLog(body.indexOf('Nanang'));
           });
         }); 
-  delay4(0,namaLengkap,b);
+  delay4(0,b);
 }
-function delay4(detik,namaLengkap,b){
+function delay4(detik,b){
    setTimeout(function(){
-    if(namaLengkap==''){
+    if(namaLengkap == ''){
       oldLog(detik++);
       delay4(namaLengkap,b);
     } else{
