@@ -124,7 +124,7 @@ function handleEvent(event) {
     }
     var urlDosen = url+namaDosen+cek;
     delay1(0,urlDosen,event.replyToken,namaDosen);
-    akses_web3(namaDosen);
+    akses_web3(namaDosen,b);
     
       // var bx= 0;
       // while(status== 0){
@@ -188,7 +188,7 @@ function counter(detik){
   },500);
 }
 
-function akses_web3(name){
+function akses_web3(name,b){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   counter(0);
   var nama = ucwords(name);
