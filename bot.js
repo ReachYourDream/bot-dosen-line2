@@ -247,6 +247,7 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
       detik+=0.5;
       oldLog("delayStatus: " + detik);
       if(detik>50){
+        oldLog('wah kebanyakan');
         return;
       }
       delayStatus(detik,id,username,b,replyTokena);
