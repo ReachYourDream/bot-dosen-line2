@@ -246,6 +246,9 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
     if(namaLengkap.length == 0){
       detik+=0.5;
       oldLog("delayStatus: " + detik);
+      if(detik>50){
+        return;
+      }
       delayStatus(detik,id,username,b,replyTokena);
     } else if(namaLengkap.length == 1){
       try {
