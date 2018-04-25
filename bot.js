@@ -284,10 +284,10 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
           
       //     a += result.rows[0].message['last_edit_time'];
       //   });
-      // } catch (err) {
-      //   console.error("Error " + err);
-      //   res.send("Error " + err);
-      // }
+      } catch (err) {
+        console.error("Error " + err);
+        res.send("Error " + err);
+      }
       oldLog('sampai sini kok');
       if(a!= ''){
       oldLog('sampai sini juga kok');
