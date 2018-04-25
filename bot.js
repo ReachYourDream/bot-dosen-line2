@@ -229,7 +229,7 @@ function aksesWebStatus(id,username,name,b,replyTokena){
             }
             // var pencarian = indeks;
             indeks++;
-            }
+            // }
             // while(indeks != 0);
             oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
