@@ -23,6 +23,7 @@ const pool = new Pool({
 // create LINE SDK client
 const client = new line.Client(config);
 var user = '';
+var namaLengkap = '';
 // create Express app
 // about Express itself: https://expressjs.com/
 const app = express();
@@ -176,23 +177,11 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-function counter(detik){
-  setTimeout(function(){
-    if(detik<5){
-      detik +=0.5;
-    oldLog("kounter: " + detik);
-    counter(detik);
-      } else{
-        return;
-      }
-  },500);
-}
-
+f
 function akses_web3(name,b){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   counter(0);
   var nama = ucwords(name);
-  var namaLengkap;
   http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
@@ -212,8 +201,15 @@ function akses_web3(name,b){
             oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
-        });
-  try {
+        }); 
+  delay4(namaLengkap,b);
+}
+function delay4(namaLengkap,b){
+   setTimeout(function(){
+    if(namaLengkap==''){
+      delay4(namaLengkap,b);
+    } else{
+    try {
     var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaLengkap + "') as message;"; 
     // const abcd =  pool.connect()
     // const result =  abcd.query(query);
@@ -232,7 +228,11 @@ function akses_web3(name,b){
     console.error(err);
     res.send("Error " + err);
   }
-}
+  }
+  },500);
+ }
+
+
  
  function ucwords (str) {
   //  discuss at: http://locutus.io/php/ucwords/
