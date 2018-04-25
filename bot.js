@@ -234,15 +234,15 @@ function aksesWebStatus(id,username,name,b,replyTokena){
               echo.text = "Nama Dosen yang anda masukkan salah";
               return client.replyMessage(replyTokena, echo);
             }
-            oldLog('nama: ' + namaLengkap + ' status: ' + status);
+            oldLog('nama: ' + namaLengkap + ' status: ' + stats);
 
             // oldLog(body.indexOf('Nanang'));
           });
           res.on('error', (e) => {
             console.error(e);
           });
+          delayStatus(0,id,username,b,iterasi,name,replyTokena);
         });
-  delayStatus(0,id,username,b,iterasi,name,replyTokena);
 }
 function delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena){
    setTimeout(function(){
@@ -279,7 +279,7 @@ function delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena){
       var str = '';
       var x;
       for(x = 0; x<jumlah;x++){
-        str = str + (x+1) + '. ' + namaLengkap[x] + ' (' + namaLengkap[x] + ')\n';
+        str = str + (x+1) + '. ' + namaLengkap[x] + ' (' + stats[x] + ')\n';
       }
       echo.text = 'Terdapat ' + jumlah + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str +'\n\n' 
       + 'Perlengkap nama dosen untuk mendapatkan detail laporan kehadiran';
