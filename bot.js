@@ -314,7 +314,7 @@ function penampilan(detiks,replyTokena){
       oldLog(hasil['status']);
       echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
               + 'Status Filkom Apps: ' + stats[0] + '\n' 
-              + 'Status Laporan: ' + hasil['status'] + '\n'
+              + 'Status Laporan: ' + ucwords(hasil['status']) + '\n'
               + 'Laporan terakhir: ' + hasil['last_edit_time'];
       return client.replyMessage(replyTokena,echo);
     }
