@@ -180,7 +180,23 @@ function handleEvent(event) {
  //   const echo = { type: 'text', text: 'salahnya dimana2?' };
  // }
  // return client.replyMessage(event.replyToken,dosen);
-
+function delay1(detiks,namaDosen,b,replyTokena){
+  setTimeout(function(){
+    detiks+=0.5;
+    oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
+    if(user.length==0){
+      delay1(detiks,namaDosen,b,replyTokena);
+    } else{
+      var jsonProfile = JSON.parse(user);
+      const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
+      oldLog('akhirnya bisa ' + jsonProfile.displayName + ' ' + jsonProfile.displayName);
+      // var urlDosens = urlDosen + logging;
+      // oldLog(urlDosens);
+      aksesWebStatus(jsonProfile.userId,jsonProfile.displayName,namaDosen,b,replyTokena);
+      // akses_web(urlDosens,replyTokena,namaDosen);
+    }
+  },500);
+}
 function aksesWebStatus(id,username,name,b,replyTokena){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   var nama = ucwords(name);
@@ -214,7 +230,7 @@ function aksesWebStatus(id,username,name,b,replyTokena){
             // var pencarian = indeks;
             indeks++;
             }
-            while(indeks != 0 || indeks <awal_staff);
+            while(indeks != 0 && indeks <awal_staff);
             oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
@@ -317,23 +333,7 @@ function delay(detik,replyTokena){
     }
   },1000);
 }
-function delay1(detiks,namaDosen,b,replyTokena){
-  setTimeout(function(){
-    detiks+=0.5;
-    oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
-    if(user.length==0){
-      delay1(detiks,namaDosen,b,replyTokena);
-    } else{
-      var jsonProfile = JSON.parse(user);
-      const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
-      oldLog('akhirnya bisa ' + jsonProfile.displayName + ' ' + jsonProfile.displayName);
-      // var urlDosens = urlDosen + logging;
-      // oldLog(urlDosens);
-      aksesWebStatus(jsonProfile.userId,jsonProfile.displayName,namaDosen,b,replyTokena);
-      // akses_web(urlDosens,replyTokena,namaDosen);
-    }
-  },500);
-}
+
 
 function akses_web2(url){
   setTimeout(function(){if(user.length==0){
