@@ -224,10 +224,7 @@ function aksesWebStatus(id,username,name,b,replyTokena){
               var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
               var akhirStatus = body.indexOf(penutupStatus,awalStatus);
               stats.push(body.substring(awalStatus,akhirStatus));
-            } else{
-              echo.text = "Nama Dosen yang anda masukkan salah";
-              return client.replyMessage(replyTokena, echo);
-            }
+            } 
             // var pencarian = indeks;
             indeks++;
             }
@@ -238,7 +235,11 @@ function aksesWebStatus(id,username,name,b,replyTokena){
           res.on('error', (e) => {
             console.error(e);
           });
-        }); 
+        });
+        if(iterasi==0){
+              echo.text = "Nama Dosen yang anda masukkan salah";
+              return client.replyMessage(replyTokena, echo);
+        } 
   delayStatus(0,id,username,b,iterasi,replyTokena);
 }
 function delayStatus(detik,id,username,b,jumlah,replyTokena){
