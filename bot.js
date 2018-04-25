@@ -207,7 +207,7 @@ function delay4(detik,b){
    setTimeout(function(){
     if(namaLengkap == ''){
       oldLog(detik++);
-      delay4(namaLengkap,b);
+      delay4(detik,b);
     } else{
     try {
     var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaLengkap + "') as message;"; 
