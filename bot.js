@@ -284,7 +284,7 @@ function delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena){
       echo.text = 'Terdapat ' + jumlah + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str +'\n\n' 
       + 'Perlengkap nama dosen untuk mendapatkan detail laporan kehadiran';
       try {
-        var query = "SELECT sp_cek_dosen('"+ id + "','"+username +"','" 
+        var query = "SELECT sp_query('"+ id + "','"+username +"','" 
         + b + "') as message;"; 
         pool.query(query,(err,result)=>{
           if(err){
