@@ -208,7 +208,7 @@ function aksesWebStatus(id,username,name,b,replyTokena){
           }); 
           res.on('end', ()=>{
             var indeks = 0;
-            do{
+            // do{
             indeks = body.indexOf(nama,indeks);
             var awal_staff = body.indexOf('<div class="tab-pane fade" id="tstaff">');
             if(indeks>0 && indeks<awal_staff){
@@ -230,7 +230,7 @@ function aksesWebStatus(id,username,name,b,replyTokena){
             // var pencarian = indeks;
             indeks++;
             }
-            while(indeks != 0);
+            // while(indeks != 0);
             oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
