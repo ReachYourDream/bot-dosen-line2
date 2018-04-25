@@ -127,7 +127,8 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken,echo);
     }
     // var urlDosen = url+namaDosen+cek;
-    delay1(0,urlDosen,event.replyToken,namaDosen);
+    delay1(0,namaDosen,b,event.replyToken);
+    // delay1(detiks,namaDosen,b,replyTokena){
     // aksesWebStatus(namaDosen,b);
     
       // var bx= 0;
@@ -208,7 +209,7 @@ function aksesWebStatus(id,username,name,b,replyTokena){
           }); 
           res.on('end', ()=>{
             var indeks = 0;
-            // do{
+            do{
             indeks = body.indexOf(nama,indeks);
             var awal_staff = body.indexOf('<div class="tab-pane fade" id="tstaff">');
             if(indeks>0 && indeks<awal_staff){
@@ -229,10 +230,13 @@ function aksesWebStatus(id,username,name,b,replyTokena){
             }
             // var pencarian = indeks;
             indeks++;
-            // }
-            // while(indeks != 0);
+            }
+            while(indeks != 0 && indeks <awal_staff);
             oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
+          });
+          res.on('error', (e) => {
+            console.error(e);
           });
         }); 
   delayStatus(0,id,username,b,iterasi,replyTokena);
