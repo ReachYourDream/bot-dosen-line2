@@ -180,7 +180,6 @@ function handleEvent(event) {
 
 function akses_web3(name,b){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
-  counter(0);
   var nama = ucwords(name);
   http.get(urlFilkom,res => {
     let body = '';
