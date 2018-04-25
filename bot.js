@@ -473,22 +473,22 @@ app.listen(port, () => {
 // // });
 // // bot.on('message',function(message){
 // //   //Bot harus tau kapan mengeksekusi command
-const { Pool } = require('pg');
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
+// const { Pool } = require('pg');
+// const pool = new Pool({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true
+// });
 
-app.get('/db', async (req, res) => {
-  try {
-    const abcd = await pool.connect()
-    const result = await abcd.query("SELECT sp_cek_dosen('123','coba','dosen himawat','Himawat Aryadita, S.T, M.Sc') as message;");
-    oldLog('test'+ await result.rows[0].message['nama_dosen']);
-    // var hasil = JSON.parse(result.rows[0].message);
-    // oldLog(hasil['nama_dosen']);
-    abcd.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
-});
+// app.get('/db', async (req, res) => {
+//   try {
+//     const abcd = await pool.connect()
+//     const result = await abcd.query("SELECT sp_cek_dosen('123','coba','dosen himawat','Himawat Aryadita, S.T, M.Sc') as message;");
+//     oldLog('test'+ await result.rows[0].message['nama_dosen']);
+//     // var hasil = JSON.parse(result.rows[0].message);
+//     // oldLog(hasil['nama_dosen']);
+//     abcd.release();
+//   } catch (err) {
+//     console.error(err);
+//     res.send("Error " + err);
+//   }
+// });
