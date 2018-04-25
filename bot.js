@@ -106,12 +106,19 @@ function handleEvent(event) {
     const namaDosen = b.substring(6).toLowerCase();
     try {
     var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaDosen + "') as message;"; 
-    const abcd =  pool.connect()
-    const result =  abcd.query(query);
+    // const abcd =  pool.connect()
+    // const result =  abcd.query(query);
+    pool.query(query,(err,result)=>{
+      if(err){
+        return console.error('Error executing query', err.stack);
+      }
+      oldLog("test" + result.rows[0].message['nama_dosen']);
+    })
+
     oldLog('test'+  result.rows[0].message['nama_dosen']);
     // var hasil = JSON.parse(result.rows[0].message);
     // oldLog(hasil['nama_dosen']);
-    abcd.release();
+    // abcd.release();
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
