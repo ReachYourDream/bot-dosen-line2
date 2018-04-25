@@ -115,13 +115,13 @@ function handleEvent(event) {
     // while(user.length===0);
     oldLog('panjang awal: ' + user.length);
     
-    if(date1==19){
-      echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 02:00-03:00'};
-      // console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
-      // var pushi = { type: 'text', text: 'Sabar mas'};
-      // client.pushMessage(event.source.userId, pushi);
-      return client.replyMessage(event.replyToken, echo);
-    }
+    // if(date1==19){
+    //   echo = { type: 'text', text: 'Untuk fitur pengecekan dosen tidak dapat digunakan pada jam 02:00-03:00'};
+    //   // console.log('Hasil: ' + echo.text + ' User: ' + event.source.userId);
+    //   // var pushi = { type: 'text', text: 'Sabar mas'};
+    //   // client.pushMessage(event.source.userId, pushi);
+    //   return client.replyMessage(event.replyToken, echo);
+    // }
     if(namaDosen.length<3){
       echo.text = 'Untuk pencarian nama dosen minimal 3 karakter';
       return client.replyMessage(event.replyToken,echo);
