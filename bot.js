@@ -181,7 +181,7 @@ function handleEvent(event) {
 function akses_web3(name,b){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   var nama = ucwords(name);
-  http.get(urlFilkom,res => {
+  http.get(urlFilkom, res => {
     let body = '';
           res.on('data', data=>{
             body += data;
@@ -201,11 +201,12 @@ function akses_web3(name,b){
             // oldLog(body.indexOf('Nanang'));
           });
         }); 
-  delay4(namaLengkap,b);
+  delay4(0,namaLengkap,b);
 }
-function delay4(namaLengkap,b){
+function delay4(detik,namaLengkap,b){
    setTimeout(function(){
     if(namaLengkap==''){
+      oldLog(detik++);
       delay4(namaLengkap,b);
     } else{
     try {
