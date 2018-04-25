@@ -262,13 +262,14 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
           if(err){
             return console.error('Error executing query', err.stack);
           }
+          oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
+            + result.rows[0].message['status'] + ". Last Edit: " 
+            + result.rows[0].message['last_edit_time']);
           echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
               + 'Status Filkom Apps: ' + stats[0] + '\n' 
               + 'Status Laporan: ' + result.rows[0].message['status'] + '\n'
               + 'Laporan terakhir: ' + result.rows[0].message['last_edit_time'];
-          oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
-            + result.rows[0].message['status'] + ". Last Edit: " 
-            + result.rows[0].message['last_edit_time']);
+          
           a += result.rows[0].message['last_edit_time'];
         });
       } catch (err) {
