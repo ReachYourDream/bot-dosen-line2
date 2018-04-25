@@ -104,25 +104,6 @@ function handleEvent(event) {
 
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
     const namaDosen = b.substring(6).toLowerCase();
-    try {
-    var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + b.substring(6) + "') as message;"; 
-    // const abcd =  pool.connect()
-    // const result =  abcd.query(query);
-    pool.query(query,(err,result)=>{
-      if(err){
-        return console.error('Error executing query', err.stack);
-      }
-      oldLog("test" + result.rows[0].message['nama_dosen']);
-    });
-
-    // oldLog('test'+  result.rows[0].message['nama_dosen']);
-    // var hasil = JSON.parse(result.rows[0].message);
-    // oldLog(hasil['nama_dosen']);
-    // abcd.release();
-  } catch (err) {
-    console.error(err);
-    res.send("Error " + err);
-  }
     const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours();  
@@ -210,7 +191,8 @@ function counter(detik){
 function akses_web3(name){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   counter(0);
-  var nama = name.charAt(0).toUpperCase() + name.slice(1);
+  var nama = ucwords(name);
+  var namaLengkap;
   http.get(urlFilkom,res => {
     let body = '';
           res.on('data', data=>{
@@ -221,18 +203,60 @@ function akses_web3(name){
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
             var akhir = body.indexOf(penutup,body.indexOf(nama));
-            var hasil = body.substring(awal,akhir);
+            var namaLengkap = body.substring(awal,akhir);
             var pembukaStatus = "align='center'>";
             var penutupStatus = '</div>';
             var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
             var akhirStatus = body.indexOf(penutupStatus,awalStatus);
             var status = body.substring(awalStatus,akhirStatus);
-            oldLog('nama: ' + hasil + ' status: ' + status);
+            oldLog('nama: ' + namaLengkap + ' status: ' + status);
             // oldLog(body.indexOf('Nanang'));
           });
         });
-}
+  try {
+    var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaLengkap + "') as message;"; 
+    // const abcd =  pool.connect()
+    // const result =  abcd.query(query);
+    pool.query(query,(err,result)=>{
+      if(err){
+        return console.error('Error executing query', err.stack);
+      }
+      oldLog("test" + result.rows[0].message['nama_dosen']);
+    });
 
+    // oldLog('test'+  result.rows[0].message['nama_dosen']);
+    // var hasil = JSON.parse(result.rows[0].message);
+    // oldLog(hasil['nama_dosen']);
+    // abcd.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
+}
+ 
+ function ucwords (str) {
+  //  discuss at: http://locutus.io/php/ucwords/
+  // original by: Jonas Raoni Soares Silva (http://www.jsfromhell.com)
+  // improved by: Waldo Malqui Silva (http://waldo.malqui.info)
+  // improved by: Robin
+  // improved by: Kevin van Zonneveld (http://kvz.io)
+  // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
+  // bugfixed by: Cetvertacov Alexandr (https://github.com/cetver)
+  //    input by: James (http://www.james-bell.co.uk/)
+  //   example 1: ucwords('kevin van  zonneveld')
+  //   returns 1: 'Kevin Van  Zonneveld'
+  //   example 2: ucwords('HELLO WORLD')
+  //   returns 2: 'HELLO WORLD'
+  //   example 3: ucwords('у мэри был маленький ягненок и она его очень любила')
+  //   returns 3: 'У Мэри Был Маленький Ягненок И Она Его Очень Любила'
+  //   example 4: ucwords('τάχιστη αλώπηξ βαφής ψημένη γη, δρασκελίζει υπέρ νωθρού κυνός')
+  //   returns 4: 'Τάχιστη Αλώπηξ Βαφής Ψημένη Γη, Δρασκελίζει Υπέρ Νωθρού Κυνός'
+
+  return (str + '')
+    .replace(/^(.)|\s+(.)/g, function ($1) {
+      return $1.toUpperCase()
+    })
+}
 
 function delay(detik,replyTokena){
   setTimeout(function(){
