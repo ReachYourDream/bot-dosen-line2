@@ -184,13 +184,13 @@ function handleEvent(event) {
 function aksesWebStatus(id,username,name,b,replyTokena){
   var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   var nama = ucwords(name);
+  var iterasi = 0;
   http.get(urlFilkom, res => {
     let body = '';
           res.on('data', data=>{
             body += data;
           }); 
           res.on('end', ()=>{
-            var iterasi = 0;
             var indeks = 0;
             do{
             indeks = body.indexOf(nama,indeks);
