@@ -253,7 +253,7 @@ function delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena){
         oldLog('wah kebanyakan');
         return;
       }
-      delayStatus(detik,id,username,b,replyTokena);
+      delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena);
     } else if(namaLengkap.length == 1){
       var a = '';
       try {
