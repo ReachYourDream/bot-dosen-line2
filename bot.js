@@ -87,6 +87,8 @@ function handleEvent(event) {
   status=1;
   const b = String(event.message.text);
   if(b.toLowerCase().substring(0,5)=='lapor'){
+    echo.text = "Untuk sementara, fitur lapor belum dapat digunakan";
+    return client.replyMessage(event.replyToken,echo);
     const lapor = '&fungsi=lapor';
     var split = b.split(" ");
     var stat = split[1];
