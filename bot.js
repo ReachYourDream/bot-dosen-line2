@@ -15,7 +15,11 @@ const config = {
   channelAccessToken: process.env.CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.CHANNEL_SECRET,
 };
-
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 // create LINE SDK client
 const client = new line.Client(config);
 var user = '';
@@ -100,6 +104,18 @@ function handleEvent(event) {
 
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
     const namaDosen = b.substring(6).toLowerCase();
+    try {
+    var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaDosen + "') as message;"; 
+    const abcd = await pool.connect()
+    const result = await abcd.query(query);
+    oldLog('test'+ await result.rows[0].message['nama_dosen']);
+    // var hasil = JSON.parse(result.rows[0].message);
+    // oldLog(hasil['nama_dosen']);
+    abcd.release();
+  } catch (err) {
+    console.error(err);
+    res.send("Error " + err);
+  }
     const cek = '&fungsi=cek';
     var date = new Date();
     var date1 = date.getHours();  
