@@ -467,7 +467,7 @@ app.get('/db', async (req, res) => {
   try {
     const abcd = await pool.connect()
     const result = await abcd.query("SELECT sp_cek_dosen('123','coba','dosen himawat','Himawat Aryadita, S.T, M.Sc') as message;");
-    oldLog('test'+ await result.rows[0].message);
+    oldLog('test'+ await result.rows[0].message['nama_dosen']);
     // var hasil = JSON.parse(result.rows[0].message);
     // oldLog(hasil['nama_dosen']);
     abcd.release();
