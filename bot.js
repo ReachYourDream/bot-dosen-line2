@@ -322,7 +322,7 @@ function delay1(detiks,namaDosen,b,replyTokena){
     detiks+=0.5;
     oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
     if(user.length==0){
-      delay(detiks,namaDosen,b,replyTokena);
+      delay1(detiks,namaDosen,b,replyTokena);
     } else{
       var jsonProfile = JSON.parse(user);
       const logging = '&user=' + jsonProfile.displayName + '&userid=' + jsonProfile.userId;
