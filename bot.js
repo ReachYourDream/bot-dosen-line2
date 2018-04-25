@@ -106,9 +106,9 @@ function handleEvent(event) {
     const namaDosen = b.substring(6).toLowerCase();
     try {
     var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaDosen + "') as message;"; 
-    const abcd = await pool.connect()
-    const result = await abcd.query(query);
-    oldLog('test'+ await result.rows[0].message['nama_dosen']);
+    const abcd =  pool.connect()
+    const result =  abcd.query(query);
+    oldLog('test'+  result.rows[0].message['nama_dosen']);
     // var hasil = JSON.parse(result.rows[0].message);
     // oldLog(hasil['nama_dosen']);
     abcd.release();
