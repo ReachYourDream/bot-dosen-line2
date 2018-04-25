@@ -217,7 +217,9 @@ function delay4(detik,b){
       if(err){
         return console.error('Error executing query', err.stack);
       }
-      oldLog("test" + result.rows[0].message['nama_dosen']);
+      oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
+        + result.rows[0].message['status'] + ". Last Edit: " 
+        + result.rows[0].message['last_edit_time']);
     });
 
     // oldLog('test'+  result.rows[0].message['nama_dosen']);
@@ -276,7 +278,7 @@ function delay(detik,replyTokena){
 }
 function delay1(detiks,urlDosen,replyTokena,namaDosen){
   setTimeout(function(){
-    detiks++;
+    detiks+=0.5;
     oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
     if(user.length==0){
       delay(detiks,urlDosen);
@@ -288,7 +290,7 @@ function delay1(detiks,urlDosen,replyTokena,namaDosen){
       oldLog(urlDosens);
       akses_web(urlDosens,replyTokena,namaDosen);
     }
-  },1000);
+  },500);
 }
 
 function akses_web2(url){
