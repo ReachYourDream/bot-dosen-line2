@@ -254,6 +254,7 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
       }
       delayStatus(detik,id,username,b,replyTokena);
     } else if(namaLengkap.length == 1){
+      var a = '';
       try {
         var query = "SELECT sp_cek_dosen('"+ id + "','"+username +"','" 
         + b + "','" + namaLengkap[0] + "') as message;"; 
@@ -268,14 +269,14 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
           oldLog("nama: " + result.rows[0].message['nama_dosen'] +  ". status: " 
             + result.rows[0].message['status'] + ". Last Edit: " 
             + result.rows[0].message['last_edit_time']);
-
+          a += result.rows[0].message['last_edit_time'];
         });
       } catch (err) {
         console.error("Error " + err);
         res.send("Error " + err);
       }
       oldLog('sampai sini kok');
-      if(result.rows[0].message['last_edit_time'].length != 0){
+      if(a!= ''){
       oldLog('sampai sini juga kok');
       return client.replyMessage(replyTokena,echo);
       }
