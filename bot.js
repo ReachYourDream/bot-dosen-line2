@@ -191,7 +191,7 @@ function akses_web3(name,b){
             var penutup = '</span></a></b>';
             var awal = body.indexOf(pembuka,body.indexOf(nama)-90)+pembuka.length;
             var akhir = body.indexOf(penutup,body.indexOf(nama));
-            var namaLengkap = body.substring(awal,akhir);
+            namaLengkap = body.substring(awal,akhir);
             var pembukaStatus = "align='center'>";
             var penutupStatus = '</div>';
             var awalStatus = body.indexOf(pembukaStatus,akhir)+pembukaStatus.length;
@@ -206,7 +206,7 @@ function akses_web3(name,b){
 function delay4(detik,b){
    setTimeout(function(){
     if(namaLengkap == ''){
-      oldLog(detik++);
+      oldLog(detik+=0.5);
       delay4(detik,b);
     } else{
     try {
