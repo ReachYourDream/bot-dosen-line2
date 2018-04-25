@@ -115,7 +115,7 @@ function handleEvent(event) {
       oldLog("test" + result.rows[0].message['nama_dosen']);
     });
 
-    oldLog('test'+  result.rows[0].message['nama_dosen']);
+    // oldLog('test'+  result.rows[0].message['nama_dosen']);
     // var hasil = JSON.parse(result.rows[0].message);
     // oldLog(hasil['nama_dosen']);
     // abcd.release();
