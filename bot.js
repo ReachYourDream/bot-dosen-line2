@@ -248,7 +248,7 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
     if(namaLengkap.length == 0){
       detik+=0.5;
       oldLog("delayStatus: " + detik);
-      if(detik>50){
+      if(detik>10){
         oldLog('wah kebanyakan');
         return;
       }
@@ -273,6 +273,7 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
         console.error("Error " + err);
         res.send("Error " + err);
       }
+      oldLog('sampai sini kok');
       return client.replyMessage(replyTokena,echo);
     }
     else{
