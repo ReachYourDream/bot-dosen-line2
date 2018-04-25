@@ -241,7 +241,6 @@ function aksesWebStatus(id,username,name,b,replyTokena){
             console.error(e);
           });
         });
-         
   delayStatus(0,id,username,b,iterasi,replyTokena);
 }
 function delayStatus(detik,id,username,b,jumlah,replyTokena){
@@ -271,7 +270,7 @@ function delayStatus(detik,id,username,b,jumlah,replyTokena){
             + result.rows[0].message['last_edit_time']);
         });
       } catch (err) {
-        console.error(err);
+        console.error("Error " + err);
         res.send("Error " + err);
       }
       return client.replyMessage(replyTokena,echo);
