@@ -235,13 +235,13 @@ function aksesWebStatus(id,username,name,b,replyTokena){
               return client.replyMessage(replyTokena, echo);
             }
             oldLog('nama: ' + namaLengkap + ' status: ' + stats);
-
+            delayStatus(0,id,username,b,iterasi,name,replyTokena);
             // oldLog(body.indexOf('Nanang'));
           });
           res.on('error', (e) => {
             console.error(e);
           });
-          delayStatus(0,id,username,b,iterasi,name,replyTokena);
+          
         });
 }
 function delayStatus(detik,id,username,b,jumlah,namaDosen,replyTokena){
