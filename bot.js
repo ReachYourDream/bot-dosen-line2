@@ -105,7 +105,7 @@ function handleEvent(event) {
   } else if(b.toLowerCase().substring(0,5)=='dosen'){
     const namaDosen = b.substring(6).toLowerCase();
     try {
-    var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + namaDosen + "') as message;"; 
+    var query = "SELECT sp_cek_dosen('123','coba','" + b + "','" + b.substring(6) + "') as message;"; 
     // const abcd =  pool.connect()
     // const result =  abcd.query(query);
     pool.query(query,(err,result)=>{
