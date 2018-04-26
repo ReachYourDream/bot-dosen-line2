@@ -107,6 +107,12 @@ function handleEvent(event) {
   var time = Math.floor(Date.now() / 1000);
   oldLog(time);
   if(b.toLowerCase().substring(0,5)=='lapor'){
+    var date = new Date();
+    var date1 = date.getHours(); 
+    if(date1>17 && date1<23){
+      echo.text = 'Tidak dapat melakukan update kehadiran dosen pada jam 00:00 hingga 05:59';
+      return client.replyMessage(event.replyToken,echo);
+    }
     // echo.text = "Untuk sementara, fitur lapor belum dapat digunakan";
     // return client.replyMessage(event.replyToken,echo);
     // const lapor = '&fungsi=lapor';
