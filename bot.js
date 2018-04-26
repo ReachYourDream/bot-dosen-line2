@@ -428,10 +428,16 @@ function penampilan(detiks,replyTokena){
       return;
     }
     if(hasil['last_edit_time']===null){
+      if(hasil['nama_dosen']===null){
+        echo.text = 'Nama Dosen: ' + namaLengkap[0] + '\n' 
+              + 'Status Filkom Apps: ' + stats[0] + '\n' 
+              + 'Status Laporan: Belum ada laporan' ;
+        return client.replyMessage(replyTokena,echo);
+      }
       penampilan(detiks); 
     } else{
       oldLog(hasil['status']);
-      echo.text= 'Nama Dosen: ' + namaLengkap[0] + '\n' 
+      echo.text = 'Nama Dosen: ' + namaLengkap[0] + '\n' 
               + 'Status Filkom Apps: ' + stats[0] + '\n' 
               + 'Status Laporan: ' + ucwords(hasil['status']) + '\n'
               + 'Laporan terakhir: ' + hasil['last_edit_time'];
