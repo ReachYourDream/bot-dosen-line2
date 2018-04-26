@@ -43,7 +43,7 @@ console.log= function(value){
 var cron = require('cron');
 
 var job1 = new cron.CronJob({
-  cronTime: '20 19 * * *',
+  cronTime: '21 19 * * *',
   onTick: function() {
     var date = new Date();
     var date1 = date.getHours()+7;
