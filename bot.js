@@ -279,7 +279,7 @@ function delayLapor(detik,id,username,b,iterasi,name,status,replyTokena){
       for(x = 0; x<iterasi;x++){
         str = str + (x+1) + '. ' + namaLengkap[x] + ' (' + stats[x] + ')\n';
       }
-      echo.text = 'Terdapat ' + iterasi + ' dosen dengan nama \"' + namaDosen + '\" Yaitu:\n' + str +'\n\n' 
+      echo.text = 'Terdapat ' + iterasi + ' dosen dengan nama \"' + name + '\" Yaitu:\n' + str +'\n\n' 
       + 'Perlengkap nama dosen untuk melakukan update kehadiran';
       try {
         var query = "SELECT sp_query('"+ id + "','"+username +"','" 
