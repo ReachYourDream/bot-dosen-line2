@@ -43,11 +43,27 @@ console.log= function(value){
 var cron = require('cron');
 
 var job1 = new cron.CronJob({
-  cronTime: '23 19 * * *',
+  cronTime: '0 0 * * *',
   onTick: function() {
     var date = new Date();
     var date1 = date.getHours()+7;
     oldLog("jam cronjob" + date1);
+    try {
+        var query = "SELECT sp_reset_status();"; 
+        oldLog(query);  
+        pool.query(query,(err,result)=>{
+          if(err){
+            return console.error('Error executing query', err.stack);
+          }
+          oldLog("Reset berhasil");
+          // echo.text = 'Update status untuk dosen ' + namaLengkap[0] + ' telah berhasil.' + 
+          // '\n' + 'Terima kasih'; 
+          // return client.replyMessage(replyTokena,echo);
+        });
+      } catch (err) {
+        console.error("Error " + err);
+        res.send("Error " + err);
+      }
   },
   start: false,
   timeZone: 'Asia/Jakarta'
