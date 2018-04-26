@@ -88,6 +88,7 @@ function handleEvent(event) {
   status=1;
   const b = String(event.message.text);
   var time = Math.floor(Date.now() / 1000);
+  oldLog(time);
   if(b.toLowerCase().substring(0,5)=='lapor'){
     // echo.text = "Untuk sementara, fitur lapor belum dapat digunakan";
     // return client.replyMessage(event.replyToken,echo);
