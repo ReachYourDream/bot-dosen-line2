@@ -185,6 +185,7 @@ function handleEvent(event) {
  // }
  // return client.replyMessage(event.replyToken,dosen);
  function delayLapor(detiks,namaDosen,status,b,replyTokena){
+  oldLog("replyTokenaDelayLapor: " + replyTokena);
   setTimeout(function(){
     detiks+=0.2;
     oldLog('Detik profil ke: '+ detiks + ' ' + user.length);
@@ -254,7 +255,7 @@ function delayLapor1(detik,id,username,b,iterasi,name,status,replyTokena){
         return;
       }
       delayLapor1(detik,id,username,b,iterasi,name,status,replyTokena);
-      oldLog("replyTokenDelayLapor: " + replyTokena);
+      oldLog("replyTokenDelayLapor1: " + replyTokena);
     } else if(namaLengkap.length == 1){
       var a = '';
       try {
