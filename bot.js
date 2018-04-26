@@ -242,7 +242,7 @@ var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
           });
           
         });
-} delayLapor(0,id,username,b,iterasi,name,replyTokena);
+}
 function delayLapor(detik,id,username,b,iterasi,name,status,replyTokena){
   setTimeout(function(){
     if(namaLengkap.length == 0){
