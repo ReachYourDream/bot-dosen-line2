@@ -42,15 +42,16 @@ console.log= function(value){
 }
 var cron = require('cron');
 
-// var job1 = new cron.CronJob({
-//   cronTime: '* * * * * *',
-//   onTick: function() {
-//     console.log('job 1 ticked');
-//   },
-//   start: false,
-//   timeZone: 'America/Los_Angeles'
-// });
-// job1.start();
+var job1 = new cron.CronJob({
+  cronTime: '1 0 * * 1-5',
+  onTick: function() {
+    var time = Math.floor(Date.now() / 1000);
+    console.log(time);
+  },
+  start: false,
+  timeZone: 'America/Los_Angeles'
+});
+job1.start();
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -86,6 +87,7 @@ function handleEvent(event) {
 
   status=1;
   const b = String(event.message.text);
+  var time = Math.floor(Date.now() / 1000);
   if(b.toLowerCase().substring(0,5)=='lapor'){
     // echo.text = "Untuk sementara, fitur lapor belum dapat digunakan";
     // return client.replyMessage(event.replyToken,echo);
@@ -435,7 +437,12 @@ function penampilan(detiks,replyTokena){
         return client.replyMessage(replyTokena,echo);
       }
       penampilan(detiks); 
-    } else{
+    } else if(hasil['last_edit_time']== '02:00:00'){
+        echo.text = 'Nama Dosen: ' + namaLengkap[0] + '\n' 
+              + 'Status Filkom Apps: ' + stats[0] + '\n' 
+              + 'Status Laporan: ' + 'Belum ada laporan hari ini';
+        return client.replyMessage(replyTokena,echo);
+      } else{
       oldLog(hasil['status']);
       echo.text = 'Nama Dosen: ' + namaLengkap[0] + '\n' 
               + 'Status Filkom Apps: ' + stats[0] + '\n' 
