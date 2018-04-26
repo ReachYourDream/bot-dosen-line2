@@ -199,6 +199,7 @@ function handleEvent(event) {
   },200);
  }
 function aksesWebLapor(id,username,name,status,b,replyTokena){
+oldLog("replyTokenaksesWebLapor: " + replyTokena);
 var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
   var nama = ucwords(name);
   var iterasi = 0;
@@ -234,7 +235,7 @@ var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
               return client.replyMessage(replyTokena, echo);
             }
             oldLog('nama: ' + namaLengkap + ' status: ' + stats);
-            delayLapor(0,id,username,b,iterasi,name,status,replyTokena);
+            delayLapor1(0,id,username,b,iterasi,name,status,replyTokena);
             // oldLog(body.indexOf('Nanang'));
           });
           res.on('error', (e) => {
@@ -243,7 +244,7 @@ var urlFilkom= 'http://filkom.ub.ac.id/info/hadir';
           
         });
 }
-function delayLapor(detik,id,username,b,iterasi,name,status,replyTokena){
+function delayLapor1(detik,id,username,b,iterasi,name,status,replyTokena){
   setTimeout(function(){
     if(namaLengkap.length == 0){
       detik+=0.2;
@@ -253,7 +254,7 @@ function delayLapor(detik,id,username,b,iterasi,name,status,replyTokena){
         return;
       }
       delayLapor(detik,id,username,b,iterasi,name,status,replyTokena);
-      oldLog("replyToken: " + replyTokena);
+      oldLog("replyTokenDelayLapor: " + replyTokena);
     } else if(namaLengkap.length == 1){
       var a = '';
       try {
