@@ -43,13 +43,14 @@ console.log= function(value){
 var cron = require('cron');
 
 var job1 = new cron.CronJob({
-  cronTime: '1 0 * * 1-5',
+  cronTime: '20 19 * * *',
   onTick: function() {
-    var time = Math.floor(Date.now() / 1000);
-    console.log(time);
+    var date = new Date();
+    var date1 = date.getHours()+7;
+    oldLog(date1);
   },
   start: false,
-  timeZone: 'America/Los_Angeles'
+  timeZone: 'Asia/Jakarta'
 });
 job1.start();
 // register a webhook handler with middleware
