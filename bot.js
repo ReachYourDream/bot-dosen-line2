@@ -104,7 +104,7 @@ function handleEvent(event) {
       return client.replyMessage(event.replyToken,echo);
     }
     delayLapor(0,namaDosen,stat,b,event.replyToken);
-    delay1(0,namaDosen,b,event.replyToken);
+    // delay1(0,namaDosen,b,event.replyToken);
 
     // return client.replyMessage(event.replyToken, echo);
 
